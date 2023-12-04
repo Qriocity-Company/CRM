@@ -1,0 +1,36 @@
+// routes/authRoutes.js
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
+const blogController = require('../controllers/blogController');
+const authenticateToken = require("../middleware/Authentication")
+
+// Set up Multer to handle file uploads, if needed
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, 'uploads/'); // Save the files to the 'uploads' directory
+//     },
+//     filename: (req, file, cb) => {
+//       const fileName = Date.now() + '-' + file.originalname;
+//       cb(null, fileName);
+//     },
+//   });
+  
+//   const upload = multer({ storage });
+
+
+
+router.get('/', blogController.getAllBlogs);
+
+
+router.get('/:id',  blogController.getBlogById);
+
+
+// Route to create a new blog post
+router.post('/', authenticateToken ,  blogController.createBlog);
+
+// Route to get blogs by company name
+router.get('/company/:companyName', blogController.getBlogsByCompany);
+
+
+module.exports = router;
