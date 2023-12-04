@@ -31,7 +31,7 @@ const Login = () => {
 
     // Call your backend API to handle login
     axios
-      .post("http://localhost:5000/auth/login", formData)
+      .post("https://crm-backend-o6sb.onrender.com/login", formData)
       .then((res) => {
         console.log(res.data);
         if (res.status === 200) {

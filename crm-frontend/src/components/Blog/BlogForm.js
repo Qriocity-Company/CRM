@@ -50,7 +50,7 @@ const BlogForm = () => {
       "writer" : user
     }
     const token = Cookies.get("token");
-    const response = await axios.post("http://localhost:5000/blog/", formData , {
+    const response = await axios.post("https://crm-backend-o6sb.onrender.com/blog/", formData , {
       headers: {
         Access_Token: token
       },

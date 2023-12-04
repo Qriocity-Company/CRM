@@ -9,7 +9,7 @@ const Dashboard = () => {
   const token = Cookies.get("token");
   const logouthandler = () => {
     axios
-      .get("http://localhost:5000/auth/logout", {
+      .get("https://crm-backend-o6sb.onrender.com/auth/logout", {
         header: {
           Access_Token: token,
         },
