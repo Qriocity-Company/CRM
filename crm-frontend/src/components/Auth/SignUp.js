@@ -20,7 +20,7 @@ const Signup = () => {
   
   const handleSubmit =  (e) => {
     e.preventDefault();
-    axios.post("https://crm-backend-o6sb.onrender.com/signup" , formData).then((res)=>{
+    axios.post("https://crm-backend-o6sb.onrender.com/auth/signup" , formData).then((res)=>{
       console.log(res.data);
       if(res.status === 201){
         navigate("/");
