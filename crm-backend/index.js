@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 
 
 // Connect to MongoDB (replace 'your-mongodb-uri' with your actual MongoDB connection string)
-mongoose.connect('mongodb+srv://ankitrawat20052001:Ankitrawat20052001@cluster0.r07ife8.mongodb.net/', {
+mongoose.connect('mongodb+srv://qriocity:responses%40123@qriocity.b6f2e8s.mongodb.net/', {
   }).then(()=>{
     console.log('MongoDB database connection established successfully');
   }).catch(err=>console.log(err));
