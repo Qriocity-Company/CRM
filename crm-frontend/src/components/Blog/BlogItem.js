@@ -48,7 +48,7 @@ const BlogItem = () => {
 
         <div className="flex flex-col gap-5">
        
-          <p className="text-gray-700 ">{blog.description}</p>
+          <p className="text-gray-700  text-lg">{blog.description}</p>
           <p className="text-gray-700 ">
             {" "}
             By : <span className="font-medium italic">{blog.writer}</span>{" "}
