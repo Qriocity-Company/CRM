@@ -41,12 +41,13 @@ const BlogItem = () => {
             Date : <span className="italic">{date.getDay() +" " + monthNames[date.getMonth()]  + " " +  date.getFullYear()}</span>
           </p>
       </div>
-      <div className=" p-4 md:flex  hidden gap-10  bg-white border rounded-lg shadow-lg">
+      <div className=" p-5 md:block  hidden gap-10  bg-white border rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold ">{blog.title}</h2>
+          <p className="text-gray-600 mb-3 italic">{blog.caption}</p>
         <img src={`${URL}/${blog.imageURL}`} className="mb-4 w-1/2 max-h-[500px] rounded-lg" />
 
         <div className="flex flex-col gap-5">
-          <h2 className="text-2xl font-bold ">{blog.title}</h2>
-          <p className="text-gray-600  italic">{blog.caption}</p>
+       
           <p className="text-gray-700 ">{blog.description}</p>
           <p className="text-gray-700 ">
             {" "}
