@@ -4,7 +4,7 @@ import { useAuth } from "../../AuthContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
+const URL = "https://crm-backend-o6sb.onrender.com"
 const Login = () => {
   const navigate = useNavigate();
   const {login } = useAuth();
@@ -31,7 +31,7 @@ const Login = () => {
 
     // Call your backend API to handle login
     axios
-      .post("https://crm-backend-o6sb.onrender.com/auth/login", formData)
+      .post(`${URL}/auth/login`, formData)
       .then((res) => {
         console.log(res.data);
         if (res.status === 200) {
@@ -43,7 +43,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        setError(err.response.data.message);
+      //  setError(err.response.data.message);
       });
 
     console.log("login Successfull");

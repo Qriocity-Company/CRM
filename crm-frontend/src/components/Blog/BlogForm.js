@@ -1,6 +1,7 @@
 import React , { useState } from 'react';
 import axios from "axios";
 import Cookies from "js-cookie";
+const URL = "https://crm-backend-o6sb.onrender.com"
 const BlogForm = () => {
   const [title, setTitle] = useState('');
   const [caption, setCaption] = useState('');
@@ -10,6 +11,7 @@ const BlogForm = () => {
   const [error, setError] = useState("");
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    console.log(file);
     setImage(file);
   };
 
@@ -33,24 +35,34 @@ const BlogForm = () => {
   // formData.append('image', image);
   // formData.append('company', company);
 
-    if(title.trim("") === "" || caption.trim("") === "" || description.trim("") === "" || company === "" ) 
-    {
-      setError("Enter all Field !");
-      return;
-    }
+    // if(title.trim("") === "" || caption.trim("") === "" || description.trim("") === "" || company === "" ) 
+    // {
+    //   setError("Enter all Field !");
+    //   return;
+    // }
   
    
   try {
     const user = Cookies.get("User");
-    const formData = {
-      'title': title,
-      'caption' :  caption,
-      'description' : description,
-      'company': company,
-      "writer" : user
-    }
+    // const formData = {
+    //   'title': title,
+    //   'caption' :  caption,
+    //   'description' : description,
+    //   'company': company,
+    //   'image' : image,
+    //   "writer" : user
+    // }
+
+    const formData  = new FormData();
+    formData.append('title' , title);
+    formData.append('caption' , caption);
+    formData.append('description' , description);
+    formData.append('company' , company);
+    formData.append('writer' , user);
+
+    formData.append('image' , image);
     const token = Cookies.get("token");
-    const response = await axios.post("https://crm-backend-o6sb.onrender.com/blog/", formData , {
+    const response = await axios.post(`${URL}/blog`, formData , {
       headers: {
         Access_Token: token
       },
@@ -65,13 +77,13 @@ const BlogForm = () => {
     }
   } catch (err) {
     console.log(err.response);
-    setError(err.response.data);
+   // setError(err.response.data);
   }
 };
 
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mt-8 p-6 bg-white border border-gray-400 rounded-lg shadow-lg ">
+    <form onSubmit={handleSubmit} enctype="multipart/form-data" className="max-w-2xl mx-auto mt-8 p-6 bg-white border border-gray-400 rounded-lg shadow-lg ">
      {error && (
             <div className="text-center text-red-500 font-medium">{error}</div>
           )}
@@ -124,6 +136,7 @@ const BlogForm = () => {
       <input
         type="file"
         id="image"
+        name="image"
         accept="image/*"
         className="w-full px-3 py-2 border rounded focus:outline-none focus:shadow-outline"
         onChange={handleFileChange}

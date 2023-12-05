@@ -8,7 +8,7 @@ import BlogList from "./components/Blog/BlogList";
 import BlogForm from "./components/Blog/BlogForm";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
-
+import BlogItem from "./components/Blog/BlogItem";
 
 const routes = createBrowserRouter([
   {
@@ -28,7 +28,14 @@ const routes = createBrowserRouter([
       
         element: <BlogForm />, 
       },
-    
+      {
+       path : "blogs",
+       element: <BlogList />, 
+     },
+    {
+      path : "blogs/:blog",
+       element : <BlogItem />
+    }
     ],
   },
 ]);

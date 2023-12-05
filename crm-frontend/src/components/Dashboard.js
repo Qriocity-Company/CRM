@@ -31,12 +31,15 @@ const Dashboard = () => {
   // }
 
   return (
-    <div className="flex max-w-[144opx]  h-screen">
-      <div className="bg-indigo-950 flex-[15%] p-4 text-white">
+    <div className="flex max-w-[144opx]  ">
+      <div className="bg-indigo-950 flex-[15%] p-4 min-h-screen text-white">
         <div className="text-xl mb-5">Dashboard</div>
         <div className="flex flex-col gap-5 mb-10">
           <Link to="/dashboard" className="hover:bg-blue-400 p-2 rounded-xl  ">
             Add Blog
+          </Link>
+          <Link to="/dashboard/blogs" className="hover:bg-blue-400 p-2 rounded-xl  ">
+            All Blog
           </Link>
           {/* <div>My blogs</div>
              <div>All blogs</div> */}

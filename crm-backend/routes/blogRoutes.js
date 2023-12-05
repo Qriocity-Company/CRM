@@ -18,7 +18,8 @@ const authenticateToken = require("../middleware/Authentication")
   
 //   const upload = multer({ storage });
 
-
+const storage = multer.memoryStorage();
+const upload = multer({ dest : 'uploads/' });
 
 router.get('/', blogController.getAllBlogs);
 
@@ -27,10 +28,12 @@ router.get('/:id',  blogController.getBlogById);
 
 
 // Route to create a new blog post
-router.post('/', authenticateToken ,  blogController.createBlog);
+router.post('/',  authenticateToken , upload.single('image'),   blogController.createBlog);
 
 // Route to get blogs by company name
 router.get('/company/:companyName', blogController.getBlogsByCompany);
+
+
 
 
 module.exports = router;

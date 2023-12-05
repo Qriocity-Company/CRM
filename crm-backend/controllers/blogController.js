@@ -5,13 +5,13 @@ const Blog = require('../models/Blog');
 exports.getAllBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find();
-    res.json(blogs);
+    res.json({blogs});
   } catch (error) {
     console.error('Error getting blog posts:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
+ 
 // Controller function to get a specific blog post by ID
 exports.getBlogById = async (req, res) => {
   try {
@@ -32,7 +32,7 @@ exports.createBlog = async (req, res) => {
     const { title, caption, description, company  , writer} = req.body;
     // const image = req.file ? req.file.filename : '';
     // console.log("images : ", image)
-    const newBlog = new Blog({ title, caption, description,  company , writer });
+    const newBlog = new Blog({ title, caption, description,  company , writer ,  imageURL: req.file.path, });
     await newBlog.save();
     
     res.status(201).json({ message: 'Blog post created successfully' });
@@ -41,6 +41,8 @@ exports.createBlog = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
 
 
 
@@ -60,6 +62,8 @@ exports.getBlogsByCompany = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
 
 
 
