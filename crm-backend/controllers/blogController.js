@@ -29,10 +29,10 @@ exports.getBlogById = async (req, res) => {
 // Controller function to create a new blog post
 exports.createBlog = async (req, res) => {
   try {
-    const { title, caption, description, company  , writer} = req.body;
+    const { title, caption, description, company  , category} = req.body;
     // const image = req.file ? req.file.filename : '';
     // console.log("images : ", image)
-    const newBlog = new Blog({ title, caption, description,  company , writer ,  imageURL: req.file.path, });
+    const newBlog = new Blog({ title, caption, description,  company , category ,  imageURL: req.file.path, });
     await newBlog.save();
     
     res.status(201).json({ message: 'Blog post created successfully' });

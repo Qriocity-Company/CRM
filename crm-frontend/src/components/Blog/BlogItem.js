@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import { IoArrowBackCircle } from "react-icons/io5";
 const URL = "https://crm-backend-o6sb.onrender.com"
+// const URL = "http://localhost:5000"
 const BlogItem = () => {
   const location = useLocation();
   const blog = location.state.b;
@@ -51,7 +52,7 @@ const BlogItem = () => {
           <p className="text-gray-700  text-lg">{blog.description}</p>
           <p className="text-gray-700 ">
             {" "}
-            By : <span className="font-medium italic">{blog.writer}</span>{" "}
+            Category : <span className="font-medium italic">{blog.category}</span>{" "}
           </p>
           <p className="text-gray-700 ">
            

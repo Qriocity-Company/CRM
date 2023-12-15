@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 const URL = "https://crm-backend-o6sb.onrender.com"
+// const URL = "http://localhost:5000"
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
 
