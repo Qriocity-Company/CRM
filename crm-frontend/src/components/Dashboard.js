@@ -41,6 +41,9 @@ const Dashboard = () => {
           <Link to="/dashboard/blogs" className="hover:bg-blue-400 p-2 rounded-xl  ">
             All Blog
           </Link>
+          <Link to="/dashboard/customers" className="hover:bg-blue-400 p-2 rounded-xl  ">
+            Customers
+          </Link>
           {/* <div>My blogs</div>
              <div>All blogs</div> */}
         </div>
@@ -53,7 +56,7 @@ const Dashboard = () => {
       </div>
       <div className="flex-[85%]">
         <h1 className=" font-bold text-2xl bg-gray-300 p-3 md:px-10">
-          Add a new Blog
+          CRM
         </h1>
         {<Outlet />}
       </div>

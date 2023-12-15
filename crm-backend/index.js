@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const AuthRouter = require("./routes/authRoutes");
 const BlogRouter = require('./routes/blogRoutes');
+const CustomerRouter = require('./routes/customerRoutes')
 const mongoose = require('mongoose');
 const multer = require('multer');
 const Blog = require('./models/Blog');
@@ -36,7 +37,7 @@ app.use("/auth" , AuthRouter );
 app.use('/blog', BlogRouter);
 
 
-
+app.use('/customer', CustomerRouter);
 
 
 

@@ -9,6 +9,7 @@ import BlogForm from "./components/Blog/BlogForm";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import BlogItem from "./components/Blog/BlogItem";
+import Customers from "./components/Customers/Customers";
 
 const routes = createBrowserRouter([
   {
@@ -35,6 +36,9 @@ const routes = createBrowserRouter([
     {
       path : "blogs/:blog",
        element : <BlogItem />
+    },{
+      path:"customers",
+      element:<Customers/>
     }
     ],
   },

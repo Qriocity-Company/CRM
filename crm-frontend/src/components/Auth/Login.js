@@ -28,7 +28,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("submitting")
     // Call your backend API to handle login
     axios
       .post(`${URL}/auth/login`, formData)
