@@ -7,7 +7,7 @@ const blogSchema = new mongoose.Schema({
   description: String,
   imageURL: String,
   company: String,
-  writer  : String,
+  category  : String,
 } ,
 {
   timestamps: true,

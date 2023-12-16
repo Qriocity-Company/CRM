@@ -1,13 +1,30 @@
 import React , { useState } from 'react';
 import axios from "axios";
 import Cookies from "js-cookie";
-const URL = "https://crm-backend-o6sb.onrender.com"
+const URL = "https://crm-backend-o6sb.onrender.com";
+// const URL = "http://localhost:5000"
+
+  // Array of technology categories
+  const techCategories = [
+    'Web Development',
+    'Mobile App Development',
+    'Data Science',
+    'Machine Learning',
+    'Cloud Computing',
+    'Cybersecurity',
+    'Artificial Intelligence',
+    'DevOps',
+    'Blockchain',
+    'Internet of Things (IoT)',
+  ];
+
 const BlogForm = () => {
   const [title, setTitle] = useState('');
   const [caption, setCaption] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [company, setCompany] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [error, setError] = useState("");
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -16,10 +33,12 @@ const BlogForm = () => {
   };
 
   const EmptyField = ()=>{
+    
     setCaption("");
     setTitle("");
     setDescription("");
     setCompany("");
+    setSelectedCategory("");
     setImage(null);
   }
 
@@ -58,7 +77,7 @@ const BlogForm = () => {
     formData.append('caption' , caption);
     formData.append('description' , description);
     formData.append('company' , company);
-    formData.append('writer' , user);
+    formData.append('category' ,selectedCategory );
 
     formData.append('image' , image);
     const token = Cookies.get("token");
@@ -83,7 +102,7 @@ const BlogForm = () => {
 
 
   return (
-    <form onSubmit={handleSubmit} enctype="multipart/form-data" className="max-w-2xl mx-auto mt-8 p-6 bg-white border border-gray-400 rounded-lg shadow-lg ">
+    <form id="blogForm" onSubmit={handleSubmit} enctype="multipart/form-data" className="max-w-2xl mx-auto mt-8 p-6 bg-white border border-gray-400 rounded-lg shadow-lg ">
      {error && (
             <div className="text-center text-red-500 font-medium">{error}</div>
           )}
@@ -128,7 +147,27 @@ const BlogForm = () => {
         placeholder='Enter Description here...'
       />
     </div>
+    <div className='mb-4'>
+      <label htmlFor="techCategory" className='block text-gray-700 text-sm font-bold mb-2'>Category:</label>
+      <select
+        id="techCategory"
+        name="techCategory"
+        className="w-full px-3 py-2 border rounded focus:outline-none focus:shadow-outline"
+        value={selectedCategory}
+        onChange={(e)=>{setSelectedCategory(e.target.value)}}
+      >
+        <option value="" disabled>
+          Select a category
+        </option>
+        {techCategories.map((category, index) => (
+          <option key={index} value={category} >
+            {category}
+          </option>
+        ))}
+      </select>
 
+     
+    </div>
     <div className="mb-4">
       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
         Image:
