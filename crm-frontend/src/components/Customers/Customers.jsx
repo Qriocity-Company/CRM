@@ -29,6 +29,25 @@ const Customers = () => {
     setCustomers(customers.filter((element)=>element.id!=id));
   }
 
+  function convertUTCtoIST(utcTimestamp) {
+    const utcDate = new Date(utcTimestamp);
+    const istOffset = 5.5 * 60 * 60 * 1000; // 5.5 hours ahead of UTC
+    const istTimestamp = utcDate.getTime() + istOffset;
+    const istDate = new Date(istTimestamp);
+  
+    const options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZone: 'Asia/Kolkata',
+    };
+  
+    return istDate.toLocaleString('en-IN', options);
+  }
+
   return (
     <div className='p-[2rem]'>
 
@@ -66,7 +85,7 @@ const Customers = () => {
                             {customer.phoneNumber}
                         </div>
                         <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>
-                            {customer.date?customer.date:'N/A'}
+                            {customer.date?convertUTCtoIST(customer.date):'N/A'}
                         </div>
                         <div className='col-span-1 p-4'>
                             <div className='py-2 bg-red-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-red-700' onClick={()=>deleteCustomer(customer.id)}>
