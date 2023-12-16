@@ -31,21 +31,8 @@ const Customers = () => {
 
   function convertUTCtoIST(utcTimestamp) {
     const utcDate = new Date(utcTimestamp);
-    const istOffset = 5.5 * 60 * 60 * 1000; // 5.5 hours ahead of UTC
-    const istTimestamp = utcDate.getTime() + istOffset;
-    const istDate = new Date(istTimestamp);
-  
-    const options = {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      timeZone: 'Asia/Kolkata',
-    };
-  
-    return istDate.toLocaleString('en-IN', options);
+    const istDateTime = utcDate.toLocaleString("en-IN", { timeZone: 'Asia/Kolkata' });
+    return istDateTime;
   }
 
   return (
