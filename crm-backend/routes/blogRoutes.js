@@ -33,6 +33,8 @@ router.post('/',  authenticateToken , upload.single('image'),   blogController.c
 // Route to get blogs by company name
 router.get('/company/:companyName', blogController.getBlogsByCompany);
 
+router.get('/category/:category', blogController.getBlogsByCategory);
+
 
 
 

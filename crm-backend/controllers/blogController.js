@@ -63,6 +63,22 @@ exports.getBlogsByCompany = async (req, res) => {
   }
 };
 
+exports.getBlogsByCategory = async (req, res) => {
+  try {
+    const companyName = req.params.category;
+    const blogs = await Blog.find({ category: category });
+    console.log(category);
+    if (blogs.length === 0) {
+      return res.status(404).json({ message: 'No blogs found for the specified company' });
+    }
+
+    res.json(blogs);
+  } catch (error) {
+    console.error('Error fetching blogs by company:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 
 
 
