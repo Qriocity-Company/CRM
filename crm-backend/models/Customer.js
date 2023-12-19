@@ -5,7 +5,8 @@ const customerSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   message:{ type:String },
   email:{type:String},
-  id: { type: String, required: true }
+  id: { type: String, required: true },
+  date:{type:Date , default:Date.now}
 });
 
 const Customer = mongoose.model('Customer', customerSchema);

@@ -29,12 +29,18 @@ const Customers = () => {
     setCustomers(customers.filter((element)=>element.id!=id));
   }
 
+  function convertUTCtoIST(utcTimestamp) {
+    const utcDate = new Date(utcTimestamp);
+    const istDateTime = utcDate.toLocaleString("en-IN", { timeZone: 'Asia/Kolkata' });
+    return istDateTime;
+  }
+
   return (
     <div className='p-[2rem]'>
 
         <h1 className='font-semibold text-2xl'>Customer Messages Received</h1>
 
-        <div className='grid grid-cols-5 bg-[#2f2a7a] text-white mt-4'>
+        <div className='grid grid-cols-6 bg-[#2f2a7a] text-white mt-4'>
             <div className='col-span-1 p-4 text-xl font-bold'> 
                 Name
             </div>
@@ -44,6 +50,9 @@ const Customers = () => {
             <div className='col-span-1 p-4 text-xl font-bold text-left'>
                 Phone Number
             </div>
+            <div className='col-span-1 p-4 text-xl font-bold text-left'>
+                Date
+            </div>
             <div className='col-span-1 p-4 text-xl font-bold'>
                 
             </div>
@@ -52,7 +61,7 @@ const Customers = () => {
         {
             customers.map((customer,index)=>{
                 return(
-                    <div className='grid grid-cols-5 bg-blue-200 border-2 border-b-gray-300'>
+                    <div className='grid grid-cols-6 bg-blue-200 border-2 border-b-gray-300' id={index}>
                         <div className='col-span-1 p-4 font-semibold'> 
                             {customer.name}
                         </div>
@@ -61,6 +70,9 @@ const Customers = () => {
                         </div>
                         <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>
                             {customer.phoneNumber}
+                        </div>
+                        <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>
+                            {customer.date?convertUTCtoIST(customer.date):'N/A'}
                         </div>
                         <div className='col-span-1 p-4'>
                             <div className='py-2 bg-red-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-red-700' onClick={()=>deleteCustomer(customer.id)}>

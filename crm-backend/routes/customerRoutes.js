@@ -33,7 +33,7 @@ router.post('/send',async (req,res)=>{
 router.get('/fetch',async (req,res)=>{
 
     try{
-        const customers= await Customer.find();
+        const customers = await Customer.find().sort({ date: -1 });
 
         res.status(200).json({message:"Customers fetched Successfully",customers:customers});
     }catch(error){
