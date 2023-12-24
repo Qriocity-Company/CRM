@@ -44,6 +44,7 @@ function Blog(props) {
  
 
   const [company, setCompany] = useState("");
+  const [title, setTitle] = useState("");
   const [categoryList, setCategoryList] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -67,6 +68,7 @@ useEffect(()=>{
     
 const saveBlogHandler = ()=>{
   const blogData = {
+    title : title,
     content : value , 
     company: company,
     category : selectedCategory
@@ -139,7 +141,19 @@ const saveBlogHandler = ()=>{
             ))}
           </select>
         </div>
-        
+       
+      </div>
+      <div className="mb-4">
+      <input
+            type="text"
+            name="category"
+            placeholder="Enter the category"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            value={ttile}
+            class="w-full p-2 border rounded focus:outline-none focus:border-blue-500"
+          />
       </div>
       <ReactQuill
         theme="snow"
