@@ -28,8 +28,8 @@ const BlogList = () => {
   </div> : <div className="w-5/6 mx-auto  my-10">
     
     <h1 className=" md:text-5xl text-2xl md:mb-5  font-bold">Blogs </h1>
-    <div className="grid grid-flow-row lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-      {blogs.map((b, index) => {
+    <div className="grid grid-flow-row lg:grid-cols-1 md:grid-cols-2 grid-cols-1 gap-10">
+      {/* {blogs.map((b, index) => {
         return (
           <Link  key={index} to={`/dashboard/blogs/${b}`} state={{ b}}    className="max-w-md mx-auto mt-4 p-4 bg-white border rounded-lg shadow-lg">
             <img src={`${URL}/${b.imageURL}`} alt={b.title} className="mb-4 w-full  rounded-lg" />
@@ -37,6 +37,11 @@ const BlogList = () => {
             <h2 className="md:text-2xl font-bold mb-2">{b.title}</h2>
             <p className="text-gray-600 mb-2">{b.caption}</p>
           </Link>
+        );
+      })} */}
+      {blogs.map((b, index) => {
+        return (
+          <div dangerouslySetInnerHTML={{ __html: b.content }}/>
         );
       })}
     </div>
