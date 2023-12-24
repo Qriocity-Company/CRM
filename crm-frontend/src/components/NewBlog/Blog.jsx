@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-quill/dist/quill.snow.css";
 import Cookies from "js-cookie";
-const URL = "https://crm-backend-o6sb.onrender.com/";
-// const URL = "http://localhost:5000/";
+// const URL = "https://crm-backend-o6sb.onrender.com";
+const URL = "http://localhost:5000";
 
 
 const techCategories = [
@@ -50,7 +50,7 @@ function Blog(props) {
 
   const fetch =  ()=>{
      
-      axios.get(`${URL}blog/category/${company}`).then((response)=>{
+      axios.get(`${URL}/blog/category/${company}`).then((response)=>{
          if(response.status == 200)
          {
             // console.log(response);
@@ -75,7 +75,7 @@ const saveBlogHandler = ()=>{
   }
   console.log(blogData);
   const token = Cookies.get("token");
-  axios.post(`${URL}blog`, blogData , {
+  axios.post(`${URL}/blog`, blogData , {
     headers: {
       Access_Token: token
     },

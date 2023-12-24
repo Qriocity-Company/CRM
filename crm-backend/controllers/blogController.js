@@ -48,7 +48,7 @@ exports.getAllBlogs = async (req, res) => {
 exports.createBlog = async (req, res) => {
   try {
     const {title ,  content, company, category } = req.body;
-    const newBlog = new Blog({ content, company, category });
+    const newBlog = new Blog({title ,  content, company, category });
     await newBlog.save();
     
     res.status(201).json({ message: 'Blog post created successfully' });

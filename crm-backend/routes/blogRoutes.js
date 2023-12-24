@@ -1,6 +1,7 @@
 // routes/authRoutes.js
 const express = require("express");
 const router = express.Router();
+const mongoose = require('mongoose');
 const multer = require("multer");
 const blogController = require("../controllers/blogController");
 const authenticateToken = require("../middleware/Authentication");

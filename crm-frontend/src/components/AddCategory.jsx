@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const URL = "https://crm-backend-o6sb.onrender.com/";
-// const URL = "http://localhost:5000/";
+const URL = "https://crm-backend-o6sb.onrender.com";
+// const URL = "http://localhost:5000";
 
 const AddCategory = () => {
   const [Category, setCategory] = useState("");
@@ -18,7 +18,7 @@ const AddCategory = () => {
     setCategory("");
     setCompany("");
     axios
-      .post(`${URL}blog/add-category`, data_obj)
+      .post(`${URL}/blog/add-category`, data_obj)
       .then((response) => {
       
         if (response.status == 200) {

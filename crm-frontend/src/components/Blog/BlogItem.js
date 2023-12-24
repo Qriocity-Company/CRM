@@ -25,39 +25,36 @@ const BlogItem = () => {
         back <IoArrowBackCircle className="md:text-4xl text-2xl" />{" "}
       </Link>
       <div className="md:hidden max-w-md mx-auto mt-4 p-4 bg-white border rounded-lg shadow-lg">
-        <img
-         src={`${URL}/${blog.imageURL}`}
-          className="mb-4 w-full  rounded-lg"
-        />
+       
 
         <h2 className="text-2xl font-bold mb-2">{blog.title}</h2>
-        <p className="text-gray-600 mb-2">{blog.caption}</p>
-        <p className="text-gray-700 ">{blog.description}</p>
-        <p className="text-gray-700 mt-3 ">
+        
+        <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
+        {/* <p className="text-gray-700 mt-3 ">
             {" "}
             By : <span className="font-medium italic">{blog.writer}</span>{" "}
           </p>
           <p className="text-gray-700 ">
            
             Date : <span className="italic">{date.getDay() +" " + monthNames[date.getMonth()]  + " " +  date.getFullYear()}</span>
-          </p>
+          </p> */}
       </div>
       <div className=" p-5 md:block  hidden gap-10  bg-white border rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold ">{blog.title}</h2>
-          <p className="text-gray-600 mb-3 italic">{blog.caption}</p>
-        <img src={`${URL}/${blog.imageURL}`} className="mb-4 w-1/2 max-h-[500px] rounded-lg" />
+          {/* <p className="text-gray-600 mb-3 italic">{blog.caption}</p>
+        <img src={`${URL}/${blog.imageURL}`} className="mb-4 w-1/2 max-h-[500px] rounded-lg" /> */}
 
         <div className="flex flex-col gap-5">
        
-          <p className="text-gray-700  text-lg">{blog.description}</p>
-          <p className="text-gray-700 ">
+        <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
+          {/* <p className="text-gray-700 ">
             {" "}
             Category : <span className="font-medium italic">{blog.category}</span>{" "}
           </p>
           <p className="text-gray-700 ">
            
             Date : <span className="italic">{date.getDay() +" " + monthNames[date.getMonth()]  + " " +  date.getFullYear()}</span>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
