@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "react-quill/dist/quill.snow.css";
 
-// const URL = "https://crm-backend-o6sb.onrender.com"
-const URL = "http://localhost:5000"
+const URL = "https://crm-backend-o6sb.onrender.com"
+// const URL = "http://localhost:5000"
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
    
