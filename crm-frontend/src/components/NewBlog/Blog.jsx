@@ -146,12 +146,12 @@ const saveBlogHandler = ()=>{
       <div className="mb-4">
       <input
             type="text"
-            name="category"
-            placeholder="Enter the category"
+            name="title"
+            placeholder="Enter the Title"
             onChange={(e) => {
               setTitle(e.target.value);
             }}
-            value={ttile}
+            value={title}
             class="w-full p-2 border rounded focus:outline-none focus:border-blue-500"
           />
       </div>

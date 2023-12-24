@@ -70,7 +70,7 @@ const Dashboard = () => {
         <h1 className=" font-bold text-2xl bg-gray-300 p-3 md:px-10">
           CRM
         </h1>
-        <h1>thuis is my blog</h1>
+      
         {/* {blog != "" && <div dangerouslySetInnerHTML={{ __html: blog }} />}
         <Blog blog={blog} blogHandle={blogHandle} /> */}
         {<Outlet />}
