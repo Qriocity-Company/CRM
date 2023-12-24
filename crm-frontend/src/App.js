@@ -1,5 +1,7 @@
 // App.js
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  import { AuthProvider } from "./AuthContext";
  import { useAuth } from "./AuthContext";
 import Login from "./components/Auth/Login";
@@ -10,7 +12,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import BlogItem from "./components/Blog/BlogItem";
 import Customers from "./components/Customers/Customers";
-
+import Blog from "./components/NewBlog/Blog";
+import AddCategory from "./components/AddCategory";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +30,11 @@ const routes = createBrowserRouter([
       {
          index: true,
       
-        element: <BlogForm />, 
+        element: <Blog/>, 
+      },
+      {
+        path : "addCategory",
+        element: <AddCategory />, 
       },
       {
        path : "blogs",
@@ -61,6 +68,18 @@ function App() {
     //   </AuthProvider>
     // </Router>
     <AuthProvider>
+     <ToastContainer
+position="top-right"
+autoClose={2000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
     <RouterProvider router = {routes} />
     </AuthProvider>
   );

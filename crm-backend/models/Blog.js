@@ -2,12 +2,18 @@
 const mongoose = require('mongoose');
 
 const blogSchema = new mongoose.Schema({
-  title: String,
-  caption: String,
-  description: String,
-  imageURL: String,
-  company: String,
-  category  : String,
+  content : {
+    type : String , 
+    required : true,
+  } ,
+  company: {
+    type : String , 
+    required : true,
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
+  },
 } ,
 {
   timestamps: true,

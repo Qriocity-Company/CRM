@@ -7,7 +7,7 @@ const BlogRouter = require('./routes/blogRoutes');
 const CustomerRouter = require('./routes/customerRoutes')
 const mongoose = require('mongoose');
 const multer = require('multer');
-const Blog = require('./models/Blog');
+// const Blog = require('./models/Blog');
 
 
 // Connect to MongoDB (replace 'your-mongodb-uri' with your actual MongoDB connection string)
@@ -26,8 +26,9 @@ app.use(cors());
 
 
 // Parse JSON requests
-app.use(bodyParser.urlencoded({extended : false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
 app.use("/uploads" , express.static('uploads'));
 
 
@@ -56,5 +57,7 @@ app.use('/customer', CustomerRouter);
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server has started at port 5000");
 });
+
+
 
 
