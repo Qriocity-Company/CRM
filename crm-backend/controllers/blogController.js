@@ -47,7 +47,7 @@ exports.getAllBlogs = async (req, res) => {
 // Controller function to create a new blog post
 exports.createBlog = async (req, res) => {
   try {
-    const { content, company, category } = req.body;
+    const {title ,  content, company, category } = req.body;
     const newBlog = new Blog({ content, company, category });
     await newBlog.save();
     
