@@ -9,14 +9,22 @@ const AddCategory = () => {
   const [Category, setCategory] = useState("");
   const [company, setCompany] = useState("");
   const AddCategoryHandler = () => {
+    if(Category.trim() === "")
+  {
+    toast.warning("Please Fill Category Field ");
+    return;
+  }
+  if(company.trim() === "")
+  {
+    toast.warning("Please Select company ");
+    return;
+  }
     let data_obj = {
       company: company,
       category: Category,
     };
 
-    console.log(data_obj);
-    setCategory("");
-    setCompany("");
+
     axios
       .post(`${URL}/blog/add-category`, data_obj)
       .then((response) => {

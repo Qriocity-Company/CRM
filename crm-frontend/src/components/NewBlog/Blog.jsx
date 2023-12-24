@@ -67,6 +67,21 @@ useEffect(()=>{
 }  , [company])
     
 const saveBlogHandler = ()=>{
+  if(company.trim() === "")
+  {
+    toast.warning("Please Select Company ");
+    return;
+  }
+  if(selectedCategory.trim() === "")
+  {
+    toast.warning("Please Select Category ");
+    return;
+  }
+  if(title.trim() === "")
+  {
+    toast.warning("Please Fill the Title ");
+    return;
+  }
   const blogData = {
     title : title,
     content : value , 
