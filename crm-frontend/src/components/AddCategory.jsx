@@ -9,16 +9,17 @@ const AddCategory = () => {
   const [Category, setCategory] = useState("");
   const [company, setCompany] = useState("");
   const AddCategoryHandler = () => {
+    if(company.trim() === "")
+  {
+    toast.warning("Please Select company ");
+    return;
+  }
     if(Category.trim() === "")
   {
     toast.warning("Please Fill Category Field ");
     return;
   }
-  if(company.trim() === "")
-  {
-    toast.warning("Please Select company ");
-    return;
-  }
+  
     let data_obj = {
       company: company,
       category: Category,
