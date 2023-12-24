@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-quill/dist/quill.snow.css";
 import Cookies from "js-cookie";
-const URL = "https://crm-backend-o6sb.onrender.com";
+const URL = "https://crm-backend-o6sb.onrender.com/";
 // const URL = "http://localhost:5000/";
 
 
