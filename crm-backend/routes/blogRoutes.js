@@ -22,7 +22,7 @@ const Blog = require("../models/Blog");
 // const storage = multer.memoryStorage();
 // const upload = multer({ dest : 'uploads/' });
 
-// router.get('/', blogController.getAllBlogs);
+router.get('/', blogController.getAllBlogs);
 
 // router.get('/:id',  blogController.getBlogById);
 
@@ -33,6 +33,7 @@ router.post("/", blogController.createBlog);
 // router.get('/company/:companyName', blogController.getBlogsByCompany);
 
 // router.get('/category/:category', blogController.getBlogsByCategory);
+
 
 router.get("/company/:company", async (req, res) => {
   try {
@@ -47,6 +48,34 @@ router.get("/company/:company", async (req, res) => {
   } catch (error) {
     console.error("Error fetching Category:", error);
     return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Route to delete a blog post by ID
+router.get('/:blogId', async (req, res) => {
+  try {
+    const { blogId } = req.params;
+
+    // Validate if blogId is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(blogId)) {
+      return res.status(400).json({ error: 'Invalid blogId' });
+    }
+
+    // Check if the blog post exists
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
+
+    // Ensure that the user has the necessary permissions to delete the blog post (if required)
+
+    // Perform the deletion
+    await Blog.findByIdAndDelete(blogId);
+
+    res.status(200).json({ message: 'Blog post deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting blog post:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

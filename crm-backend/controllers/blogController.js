@@ -3,15 +3,15 @@
 const Blog = require('../models/Blog');
 
 // Controller function to get all blog posts
-// exports.getAllBlogs = async (req, res) => {
-//   try {
-//     const blogs = await Blog.find();
-//     res.json({blogs});
-//   } catch (error) {
-//     console.error('Error getting blog posts:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// };
+exports.getAllBlogs = async (req, res) => {
+  try {
+    const blogs = await Blog.find();
+    res.json({blogs});
+  } catch (error) {
+    console.error('Error getting blog posts:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
  
 // Controller function to get a specific blog post by ID
 // exports.getBlogById = async (req, res) => {
