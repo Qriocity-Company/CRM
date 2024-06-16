@@ -1,9 +1,9 @@
 // App.js
 import React from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
- import { AuthProvider } from "./AuthContext";
- import { useAuth } from "./AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./AuthContext";
+import { useAuth } from "./AuthContext";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/SignUp";
 import BlogList from "./components/Blog/BlogList";
@@ -14,6 +14,7 @@ import BlogItem from "./components/Blog/BlogItem";
 import Customers from "./components/Customers/Customers";
 import Blog from "./components/NewBlog/Blog";
 import AddCategory from "./components/AddCategory";
+import AllStudents from "./components/Students/AllStudents";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -28,33 +29,35 @@ const routes = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-         index: true,
-      
-        element: <Blog/>, 
+        index: true,
+
+        element: <Blog />,
       },
       {
-        path : "addCategory",
-        element: <AddCategory />, 
+        path: "addCategory",
+        element: <AddCategory />,
       },
       {
-       path : "blogs",
-       element: <BlogList />, 
-     },
-    {
-      path : "blogs/:blog",
-       element : <BlogItem />
-    },{
-      path:"customers",
-      element:<Customers/>
-    }
+        path: "blogs",
+        element: <BlogList />,
+      },
+      {
+        path: "blogs/:blog",
+        element: <BlogItem />,
+      },
+      {
+        path: "customers",
+        element: <Customers />,
+      },
+      {
+        path: "students",
+        element: <AllStudents />,
+      },
     ],
   },
 ]);
 
 function App() {
-
-
-
   return (
     // <Router>
     //   <AuthProvider>
@@ -68,19 +71,19 @@ function App() {
     //   </AuthProvider>
     // </Router>
     <AuthProvider>
-     <ToastContainer
-position="top-right"
-autoClose={2000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
-/>
-    <RouterProvider router = {routes} />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <RouterProvider router={routes} />
     </AuthProvider>
   );
 }
