@@ -66,7 +66,7 @@ const Dashboard = () => {
             to="/dashboard/students"
             className="hover:bg-blue-400 p-2 rounded-xl  "
           >
-            Students
+            Resources Data
           </Link>
           {/* <div>My blogs</div>
              <div>All blogs</div> */}
