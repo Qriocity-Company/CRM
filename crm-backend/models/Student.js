@@ -21,6 +21,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    required: true,
+  },
 });
 
 const Student = mongoose.model("Student", studentSchema);

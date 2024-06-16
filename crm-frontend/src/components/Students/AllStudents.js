@@ -18,7 +18,13 @@ const AllStudents = () => {
       console.log(error);
     }
   };
-
+  function convertUTCtoIST(utcTimestamp) {
+    const utcDate = new Date(utcTimestamp);
+    const istDateTime = utcDate.toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+    });
+    return istDateTime;
+  }
   useEffect(() => {
     getStudents();
   }, []);
@@ -32,10 +38,10 @@ const AllStudents = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-6 bg-[#2f2a7a] text-white mt-8">
-              <div className="col-span-1 p-4 text-xl font-bold">Name</div>
-              <div className="col-span-1 p-4 text-xl font-bold">Email</div>
-              <div className="col-span-1 p-4 text-xl font-bold text-left">
+            <div className="grid grid-cols-6 bg-[#2f2a7a] text-white mt-8 text-lg">
+              <div className="col-span-1 p-4  font-bold">Name</div>
+              <div className="col-span-1 p-4 font-bold">Email</div>
+              <div className="col-span-1 p-4  font-bold text-left">
                 Phone Number
               </div>
               <div className="col-span-2 p-4 text-xl font-bold text-left">
@@ -47,13 +53,16 @@ const AllStudents = () => {
               {students.map((student, index) => {
                 return (
                   <div
-                    className="grid grid-cols-6 bg-blue-200 border-2 border-b-gray-300 text-lg"
+                    className="grid grid-cols-6 bg-blue-200 border-2 border-b-gray-300 text-sm"
                     id={index}
                   >
-                    <div className="col-span-1 p-4  font-bold ">
-                      {student.name}
+                    <div className="col-span-1 p-4 text-left font-bold flex flex-col gap-2">
+                      <h1>{student.name}</h1>
+                      <h1>
+                        {student.date ? convertUTCtoIST(student?.date) : "N/A"}
+                      </h1>
                     </div>
-                    <div className="col-span-1 p-4  font-bold ">
+                    <div className="col-span-1 p-4 text-left font-bold ">
                       {student.email}
                     </div>
                     <div className="col-span-1 p-4 pl-10  font-bold text-left">
@@ -65,6 +74,7 @@ const AllStudents = () => {
                     <div className="col-span-1 p-4 pl-10 font-bold text-left">
                       {student.year}
                     </div>
+                    <div className="col-span-1 p-4 pl-10 font-bold text-left"></div>
                   </div>
                 );
               })}

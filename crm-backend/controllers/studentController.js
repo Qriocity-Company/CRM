@@ -2,8 +2,8 @@ const StudentModel = require("../models/Student");
 
 exports.newStudent = async (req, res) => {
   try {
-    const { name, email, phone, college, year } = req.body;
-    if (!name || !email || !phone || !college || !year) {
+    const { name, email, phone, college, year, date } = req.body;
+    if (!name || !email || !phone || !college || !year || !date) {
       return res.status(404).send({
         success: false,
         message: "Please fill all fields",
@@ -16,6 +16,7 @@ exports.newStudent = async (req, res) => {
       phone: phone,
       college: college,
       year: year,
+      date: date,
     });
 
     await student.save();
