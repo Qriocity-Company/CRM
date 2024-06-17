@@ -23,12 +23,9 @@ const AllStudents = () => {
 
   const handleDel = async (id) => {
     try {
-      const { data } = await axios.post(
-        `http://localhost:5000/students/delStudent`,
-        {
-          id: id,
-        }
-      );
+      const { data } = await axios.post(`${URL}/students/delStudent`, {
+        id: id,
+      });
       if (data?.success) {
         window.location.reload();
       }
