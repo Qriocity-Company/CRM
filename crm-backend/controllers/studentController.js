@@ -57,3 +57,33 @@ exports.getStudents = async (req, res) => {
     });
   }
 };
+
+exports.delStudent = async (req, res) => {
+  try {
+    const { id } = req.body;
+    if (!id) {
+      return res.status(404).send({
+        message: "Student not found",
+        success: false,
+      });
+    }
+    const student = await StudentModel.findByIdAndDelete(id);
+    if (!student) {
+      return res.status(404).send({
+        message: "Student not found",
+        success: false,
+      });
+    }
+    return res.status(200).send({
+      success: true,
+      message: "Student Deleted",
+      student,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "Internal Server Error",
+      success: false,
+      error,
+    });
+  }
+};
