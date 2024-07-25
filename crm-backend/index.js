@@ -6,6 +6,7 @@ const AuthRouter = require("./routes/authRoutes");
 const BlogRouter = require("./routes/blogRoutes");
 const CustomerRouter = require("./routes/customerRoutes");
 const StudentRoutes = require("./routes/studentRoutes");
+const docRouter = require("./routes/DocRoutes");
 const mongoose = require("mongoose");
 const multer = require("multer");
 // const Blog = require('./models/Blog');
@@ -38,6 +39,8 @@ app.use("/blog", BlogRouter);
 app.use("/customer", CustomerRouter);
 
 app.use("/students", StudentRoutes);
+
+app.use("/api/doc", docRouter);
 
 // app.get('/api/blogs', async (req, res) => {
 //   try {
