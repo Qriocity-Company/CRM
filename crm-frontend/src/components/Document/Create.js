@@ -70,7 +70,7 @@ const Create = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md mb-8 mt-14">
         <h2 className="text-2xl font-bold mb-6">Create Document Link</h2>
         <form onSubmit={handleSubmit}>
