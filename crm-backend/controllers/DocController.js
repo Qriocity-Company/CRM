@@ -18,11 +18,10 @@ exports.createDocLink = async (req, res, next) => {
   try {
     const { title, uniqueLink, docLink } = req.body;
     const newDoc = new Doc({ uniqueLink, docLink, title });
-
     const savedDoc = await newDoc.save();
-
+    console.log(savedDoc);
     return res
-      .status(201)
+      .status(200)
       .json({ message: "Document link created successfully", doc: savedDoc });
   } catch (error) {
     if (error.code === 11000) {
