@@ -21,7 +21,7 @@ const Create = () => {
       );
 
       // Second Axios request with the combined URL
-      const combinedURL = `https://www.qriocity.in/${uniqueIdentifier}`;
+      const combinedURL = `https://www.qriocity.in/resource/${uniqueIdentifier}`;
       const response2 = await axios.post(
         "https://crm-backend-o6sb.onrender.com/api/link/createLink",
         {
