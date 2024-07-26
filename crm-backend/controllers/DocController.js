@@ -1,4 +1,4 @@
-const { Doc } = "../models/Doc.js"; // Adjust the path as necessary
+const Doc = require("../models/Doc"); // Adjust the path as necessary
 
 exports.getDocLink = async (req, res, next) => {
   try {

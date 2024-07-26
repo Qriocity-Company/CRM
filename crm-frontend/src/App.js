@@ -15,6 +15,7 @@ import Customers from "./components/Customers/Customers";
 import Blog from "./components/NewBlog/Blog";
 import AddCategory from "./components/AddCategory";
 import AllStudents from "./components/Students/AllStudents";
+import Create from "./components/Document/Create";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +53,10 @@ const routes = createBrowserRouter([
       {
         path: "students",
         element: <AllStudents />,
+      },
+      {
+        path: "document",
+        element: <Create />,
       },
     ],
   },

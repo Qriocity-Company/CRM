@@ -68,6 +68,12 @@ const Dashboard = () => {
           >
             Resources Data
           </Link>
+          <Link
+            to="/dashboard/document"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Document
+          </Link>
           {/* <div>My blogs</div>
              <div>All blogs</div> */}
         </div>
