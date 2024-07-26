@@ -8,7 +8,7 @@ exports.createLink = async (req, res, next) => {
     const savedLink = await newLink.save();
 
     return res
-      .status(201)
+      .status(200)
       .json({ message: "Document link created successfully", link: savedLink });
   } catch (error) {
     if (error.code === 11000) {

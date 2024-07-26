@@ -5,7 +5,7 @@ exports.getDocLink = async (req, res, next) => {
     const { uniqueLink } = req.params;
     const doc = await Doc.findOne({ uniqueLink });
     if (doc) {
-      return res.status(200).json({ docLink: doc.docLink });
+      return res.status(200).json({ doc: doc });
     } else {
       return res.status(404).json({ message: "Link not found" });
     }

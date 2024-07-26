@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Create = () => {
@@ -38,6 +38,20 @@ const Create = () => {
     }
   };
 
+  const getAllLinks = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://crm-backend-o6sb.onrender.com/api/link/getAlllink"
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllLinks();
+  }, []);
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
