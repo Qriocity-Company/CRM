@@ -5,7 +5,7 @@ const { getAllLinks, createLink } = require("../controllers/linkController");
 const router = express.Router();
 
 // Fetch document link by unique link
-router.get("/getlink", getAllLinks);
+router.get("/getAlllink", getAllLinks);
 
 // Create a new document link
 router.post("/createLink", createLink);
