@@ -9,7 +9,8 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      // First Axios request
+      const response1 = await axios.post(
         "https://crm-backend-o6sb.onrender.com/api/doc/createDocLink",
         {
           title: title,
@@ -17,7 +18,19 @@ const Create = () => {
           uniqueLink: uniqueIdentifier,
         }
       );
-      console.log("Response:", response.data);
+
+      // Second Axios request with the combined URL
+      const combinedURL = `https://www.qriocity.in/${uniqueIdentifier}`;
+      const response2 = await axios.post(
+        "https://crm-backend-o6sb.onrender.com/api/link/createLink",
+        {
+          title: title,
+          link: combinedURL,
+        }
+      );
+
+      console.log("First Response:", response1.data);
+      console.log("Second Response:", response2.data);
       // You can add more logic here to handle the response, e.g., show a success message
     } catch (error) {
       console.error("Error:", error);
