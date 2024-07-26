@@ -21,8 +21,8 @@ exports.createLink = async (req, res, next) => {
 
 exports.getAllLinks = async (req, res) => {
   try {
-    const { links } = await Link.find();
-    if (!links) {
+    const links = await Link.find();
+    if (!links || links.length === 0) {
       return res.status(404).send({
         message: "Links not found",
         success: false,
