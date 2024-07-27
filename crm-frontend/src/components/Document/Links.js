@@ -36,8 +36,9 @@ function Links() {
 
   const deleteLink = async (id) => {
     try {
-      await axios.delete(
-        `https://crm-backend-o6sb.onrender.com/api/doc/${id}`
+      await axios.post(
+        `https://crm-backend-o6sb.onrender.com/api/doc`,
+         id
       );
       setLinks(links.filter((link) => link._id !== id));
       alert("link deleted successfully")

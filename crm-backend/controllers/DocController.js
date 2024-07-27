@@ -57,7 +57,7 @@ exports.getAllDocs = async (req, res) => {
 
 exports.deleteDocById = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     console.log(id)
     const doc = await Doc.findByIdAndDelete({_id: id});
     if (doc) {

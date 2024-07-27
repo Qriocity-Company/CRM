@@ -10,6 +10,6 @@ router.get("/getDocLink/:uniqueLink", getDocLink);
 // Create a new document link
 router.post("/createDocLink", createDocLink);
 router.get("/getAlldoc", getAllDocs);
-router.delete('/doc/:id', deleteDocById);
+router.post('/delete', deleteDocById);
 
 module.exports = router;

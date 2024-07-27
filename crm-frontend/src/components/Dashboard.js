@@ -60,7 +60,7 @@ const Dashboard = () => {
             to="/dashboard/customers"
             className="hover:bg-blue-400 p-2 rounded-xl  "
           >
-            Customers
+            Website & Query
           </Link>
           <Link
             to="/dashboard/students"
