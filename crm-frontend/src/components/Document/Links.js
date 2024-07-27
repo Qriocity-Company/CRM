@@ -39,7 +39,7 @@ function Links() {
     try {
       await axios.post(
         `https://crm-backend-o6sb.onrender.com/api/doc/delete`,
-         id
+        {id}
       );
       setLinks(links.filter((link) => link._id !== id));
       alert("link deleted successfully")
