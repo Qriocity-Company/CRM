@@ -18,6 +18,9 @@ const DocSchema = new mongoose.Schema({
     type:String,
     required:true,
   }
+ 
+},{
+  timestamps: true // This will add createdAt and updatedAt fields
 });
 
 const Doc = mongoose.model("Doc", DocSchema);

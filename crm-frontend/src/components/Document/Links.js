@@ -5,6 +5,7 @@ function Links() {
   const [links, setLinks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [sortAscending, setSortAscending] = useState(true);
 
   const getAllLinks = async () => {
     try {
@@ -35,14 +36,14 @@ function Links() {
   };
 
   const deleteLink = async (id) => {
-    console.log(id)
+    console.log(id);
     try {
       await axios.post(
         `https://crm-backend-o6sb.onrender.com/api/doc/delete`,
-        {id}
+        { id }
       );
       setLinks(links.filter((link) => link._id !== id));
-      alert("link deleted successfully")
+      alert("Link deleted successfully");
     } catch (error) {
       console.log(error);
     }
@@ -58,6 +59,21 @@ function Links() {
   const indexOfFirstLink = indexOfLastLink - itemsPerPage;
   const currentLinks = links.slice(indexOfFirstLink, indexOfLastLink);
 
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  };
+
+  const sortLinksByDate = () => {
+    const sortedLinks = [...links].sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return sortAscending ? dateA - dateB : dateB - dateA;
+    });
+    setLinks(sortedLinks);
+    setSortAscending(!sortAscending);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-6xl">
@@ -67,7 +83,10 @@ function Links() {
           <div className="col-span-4 p-4 font-bold">Links</div>
           <div className="col-span-2 p-4 font-bold">Identifier</div>
           <div className="col-span-1 p-4 font-bold text-center">Copy</div>
-          <div className="col-span-2 p-4 font-bold text-center">Delete</div>
+          <div className="col-span-1 p-4 font-bold text-center">Delete</div>
+          <div className="col-span-1 p-4 font-bold text-center cursor-pointer" onClick={sortLinksByDate}>
+            Date {sortAscending ? "↑" : "↓"}
+          </div>
         </div>
         <div className="max-h-[75vh] overflow-y-scroll">
           {currentLinks.map((link, index) => (
@@ -90,18 +109,21 @@ function Links() {
               <div className="col-span-1 p-4">
                 <div
                   className="py-2 bg-violet-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-violet-700"
-                  onClick={() => copyToClipboard(link.link)}
+                  onClick={() => copyToClipboard(link.newLink)}
                 >
                   Copy
                 </div>
               </div>
-              <div className="col-span-2 p-4">
+              <div className="col-span-1 p-4">
                 <div
                   className="py-2 bg-red-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-red-700"
                   onClick={() => deleteLink(link._id)}
                 >
                   Delete
                 </div>
+              </div>
+              <div className="col-span-1 p-4 text-left">
+                {formatDateTime(link.createdAt)}
               </div>
             </div>
           ))}
