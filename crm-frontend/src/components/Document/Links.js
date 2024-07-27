@@ -40,6 +40,7 @@ function Links() {
         `https://crm-backend-o6sb.onrender.com/api/doc/${id}`
       );
       setLinks(links.filter((link) => link._id !== id));
+      alert("link deleted successfully")
     } catch (error) {
       console.log(error);
     }
@@ -79,10 +80,10 @@ function Links() {
                 <h1 className="font-bold">{link.title}</h1>
               </div>
               <div className="col-span-4 p-4 text-left overflow-x-auto">
-                <span className="font-bold">{link.link}</span>
+                <span className="font-bold">{link.newLink}</span>
               </div>
               <div className="col-span-2 p-4 text-left overflow-x-auto">
-                <span className="font-bold">{link.link.split("/").pop()}</span>
+                <span className="font-bold">{link.newLink?.split("/").pop()}</span>
               </div>
               <div className="col-span-1 p-4">
                 <div
