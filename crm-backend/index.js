@@ -6,6 +6,7 @@ const AuthRouter = require("./routes/authRoutes");
 const BlogRouter = require("./routes/blogRoutes");
 const CustomerRouter = require("./routes/customerRoutes");
 const StudentRoutes = require("./routes/studentRoutes");
+const EnquiryRoutes = require("./routes/EnquiryRoutes");
 const docRouter = require("./routes/DocRoutes");
 const linkRouter = require("./routes/linkRoutes");
 const mongoose = require("mongoose");
@@ -40,6 +41,8 @@ app.use("/blog", BlogRouter);
 app.use("/customer", CustomerRouter);
 
 app.use("/students", StudentRoutes);
+
+app.use("/enquiry", EnquiryRoutes);
 
 app.use("/api/doc", docRouter);
 
