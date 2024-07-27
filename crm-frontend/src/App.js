@@ -16,6 +16,7 @@ import Blog from "./components/NewBlog/Blog";
 import AddCategory from "./components/AddCategory";
 import AllStudents from "./components/Students/AllStudents";
 import Create from "./components/Document/Create";
+import Links from "./components/Document/Links";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +59,10 @@ const routes = createBrowserRouter([
         path: "document",
         element: <Create />,
       },
+      {
+        path:"link",
+        element:<Links/>
+      }
     ],
   },
 ]);

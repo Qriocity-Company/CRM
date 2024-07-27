@@ -76,6 +76,13 @@ const Dashboard = () => {
           </Link>
           {/* <div>My blogs</div>
              <div>All blogs</div> */}
+
+          <Link
+            to="/dashboard/link"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            DocLinks
+          </Link>
         </div>
         <button
           onClick={logouthandler}

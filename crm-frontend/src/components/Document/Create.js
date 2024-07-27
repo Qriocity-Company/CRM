@@ -11,24 +11,20 @@ const Create = () => {
     e.preventDefault();
     try {
       // First Axios request
+      const combinedURL = `https://www.qriocity.in/resource/${uniqueIdentifier}`;
       const response1 = await axios.post(
         "https://crm-backend-o6sb.onrender.com/api/doc/createDocLink",
         {
           title: title,
           docLink: documentLink,
           uniqueLink: uniqueIdentifier,
+          newLink:combinedURL,
         }
       );
 
       // Second Axios request with the combined URL
-      const combinedURL = `https://www.qriocity.in/resource/${uniqueIdentifier}`;
-      const response2 = await axios.post(
-        "https://crm-backend-o6sb.onrender.com/api/link/createLink",
-        {
-          title: title,
-          link: combinedURL,
-        }
-      );
+     
+  
 
       setTitle("");
       setDocumentLink("");
@@ -130,34 +126,7 @@ const Create = () => {
           </button>
         </form>
       </div>
-      <div className="grid grid-cols-12 bg-[#2f2a7a] text-white mt-8 text-lg">
-        <div className="col-span-4 p-4 font-bold">Title</div>
-        <div className="col-span-6 p-4 font-bold">Links</div>
-        <div className="col-span-2 p-4 font-bold text-left">Copy Link</div>
-      </div>
-      <div className="max-h-[75vh] overflow-y-scroll">
-        {links.map((link, index) => (
-          <div
-            className="grid grid-cols-12 w-[675px] bg-blue-200 border-b border-gray-300 text-sm"
-            key={index}
-          >
-            <div className="col-span-4 p-4 text-left flex flex-col gap-4">
-              <h1 className="font-bold">{link.title}</h1>
-            </div>
-            <div className="col-span-6 p-4 text-left">
-              <span className="font-bold">{link.link}</span>
-            </div>
-            <div className="col-span-2 p-4">
-              <div
-                className="py-2 bg-violet-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-violet-700"
-                onClick={() => copyToClipboard(link.link)}
-              >
-                Copy
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      
     </div>
   );
 };

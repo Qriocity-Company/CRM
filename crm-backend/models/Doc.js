@@ -14,6 +14,10 @@ const DocSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  newLink:{
+    type:String,
+    required:true,
+  }
 });
 
 const Doc = mongoose.model("Doc", DocSchema);
