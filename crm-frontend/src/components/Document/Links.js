@@ -35,6 +35,7 @@ function Links() {
   };
 
   const deleteLink = async (id) => {
+    console.log(id)
     try {
       await axios.post(
         `https://crm-backend-o6sb.onrender.com/api/doc/delete`,

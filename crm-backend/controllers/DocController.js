@@ -57,6 +57,9 @@ exports.getAllDocs = async (req, res) => {
 
 exports.deleteDocById = async (req, res, next) => {
   const { id } = req.body;
+    console.log("hi")
+    console.log(req.body)
+
     console.log(id)
   try {
    
