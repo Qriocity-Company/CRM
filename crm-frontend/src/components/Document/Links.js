@@ -38,10 +38,9 @@ function Links() {
   const deleteLink = async (id) => {
     console.log(id);
     try {
-      await axios.post(
-        `https://crm-backend-o6sb.onrender.com/api/doc/delete`,
-        { id }
-      );
+      await axios.post(`https://crm-backend-o6sb.onrender.com/api/doc/delete`, {
+        id,
+      });
       setLinks(links.filter((link) => link._id !== id));
       alert("Link deleted successfully");
     } catch (error) {
@@ -75,36 +74,47 @@ function Links() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-6xl">
-        <div className="grid grid-cols-12 bg-[#2f2a7a] text-white mt-8 text-lg">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-1">
+      <div className="w-full ">
+        <div className="grid grid-cols-16 bg-[#2f2a7a] text-white mt-8 text-lg">
           <div className="col-span-1 p-4 font-bold">S.No.</div>
           <div className="col-span-2 p-4 font-bold">Title</div>
           <div className="col-span-4 p-4 font-bold">Links</div>
+          <div className="col-span-4 p-4 font-bold">Doc Link</div>
           <div className="col-span-2 p-4 font-bold">Identifier</div>
           <div className="col-span-1 p-4 font-bold text-center">Copy</div>
           <div className="col-span-1 p-4 font-bold text-center">Delete</div>
-          <div className="col-span-1 p-4 font-bold text-center cursor-pointer" onClick={sortLinksByDate}>
+          <div
+            className="col-span-1 p-4 font-bold text-center cursor-pointer"
+            onClick={sortLinksByDate}
+          >
             Date {sortAscending ? "↑" : "↓"}
           </div>
         </div>
-        <div className="max-h-[75vh] overflow-y-scroll">
+        <div className="max-h-[60vh] ">
           {currentLinks.map((link, index) => (
             <div
-              className="grid grid-cols-12 bg-blue-200 border-b border-gray-300 text-sm"
+              className="grid grid-cols-16 bg-blue-200 border-b border-gray-300 text-sm"
               key={link._id}
             >
               <div className="col-span-1 p-4 text-left">
                 {indexOfFirstLink + index + 1}
               </div>
               <div className="col-span-2 p-4 text-left flex flex-col gap-4">
-                <h1 className="font-bold">{link.title}</h1>
+                <h1 className="font-bold whitespace-normal break-words">
+                  {link.title}
+                </h1>
               </div>
-              <div className="col-span-4 p-4 text-left overflow-x-auto">
+              <div className="col-span-4 p-4 text-left whitespace-normal break-words">
                 <span className="font-bold">{link.newLink}</span>
               </div>
-              <div className="col-span-2 p-4 text-left overflow-x-auto">
-                <span className="font-bold">{link.newLink?.split("/").pop()}</span>
+              <div className="col-span-4 p-4 text-left whitespace-normal break-words">
+                <span className="font-bold">{link.docLink}</span>
+              </div>
+              <div className="col-span-2 p-4 text-left whitespace-normal break-words">
+                <span className="font-bold">
+                  {link.newLink?.split("/").pop()}
+                </span>
               </div>
               <div className="col-span-1 p-4">
                 <div

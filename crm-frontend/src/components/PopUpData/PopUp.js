@@ -37,16 +37,18 @@ const PopUp = () => {
 
   function convertUTCtoIST(utcTimestamp) {
     const utcDate = new Date(utcTimestamp);
-    const istDateTime = utcDate.toLocaleString("en-IN", {
+    const istDate = utcDate.toLocaleDateString("en-IN", {
       timeZone: "Asia/Kolkata",
     });
-    return istDateTime;
+    return istDate;
   }
 
   useEffect(() => {
     getStudents();
   }, []);
-
+  const sortedStudents = students
+    .slice()
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
   return (
     <>
       <div className="content p-4">
@@ -65,7 +67,7 @@ const PopUp = () => {
               <div className="col-span-2 p-4 text-xl font-bold">Delete</div>
             </div>
             <div className="max-h-[75vh] overflow-y-scroll">
-              {students.map((student, index) => (
+              {sortedStudents.map((student, index) => (
                 <div
                   className="grid grid-cols-12 bg-blue-200 border-2 border-b-gray-300 text-sm"
                   key={index}
@@ -79,7 +81,6 @@ const PopUp = () => {
                   <div className="col-span-2 p-4 pl-10 font-bold text-left">
                     {student.phone}
                   </div>
-
                   <div className="col-span-3 p-4 text-left font-bold">
                     {student.date ? convertUTCtoIST(student.date) : "N/A"}
                   </div>
