@@ -15,7 +15,7 @@ const enquirySchema = new mongoose.Schema({
   },
 
   date: {
-    type: Date,
+    type: String,
     required: true,
   },
 });

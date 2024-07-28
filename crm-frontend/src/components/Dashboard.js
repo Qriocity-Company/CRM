@@ -69,6 +69,12 @@ const Dashboard = () => {
             Resources Data
           </Link>
           <Link
+            to="/dashboard/popup"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Pop Up Data
+          </Link>
+          <Link
             to="/dashboard/document"
             className="hover:bg-blue-400 p-2 rounded-xl  "
           >

@@ -17,6 +17,7 @@ import AddCategory from "./components/AddCategory";
 import AllStudents from "./components/Students/AllStudents";
 import Create from "./components/Document/Create";
 import Links from "./components/Document/Links";
+import PopUp from "./components/PopUpData/PopUp";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -60,9 +61,13 @@ const routes = createBrowserRouter([
         element: <Create />,
       },
       {
-        path:"link",
-        element:<Links/>
-      }
+        path: "link",
+        element: <Links />,
+      },
+      {
+        path: "popup",
+        element: <PopUp />,
+      },
     ],
   },
 ]);
