@@ -3,7 +3,7 @@ const EnquiryModel = require("../models/Enquiry");
 exports.newStudent = async (req, res) => {
   try {
     const { name, email, phone, date } = req.body;
-    if (!name || !email || !phone || !college || !year || !date) {
+    if (!name || !email || !phone || !date) {
       return res.status(404).send({
         success: false,
         message: "Please fill all fields",
