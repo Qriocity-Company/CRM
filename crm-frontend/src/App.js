@@ -18,6 +18,9 @@ import AllStudents from "./components/Students/AllStudents";
 import Create from "./components/Document/Create";
 import Links from "./components/Document/Links";
 import PopUp from "./components/PopUpData/PopUp";
+import RoadmapPopUp from "./components/roadmap/RoadmapPopUp";
+import Roadmap from "./components/roadmap/Roadmap";
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -67,6 +70,14 @@ const routes = createBrowserRouter([
       {
         path: "popup",
         element: <PopUp />,
+      },
+      {
+        path: "popup-roadmap",
+        element: <RoadmapPopUp />,
+      },
+      {
+        path: "roadmap",
+        element: <Roadmap />,
       },
     ],
   },

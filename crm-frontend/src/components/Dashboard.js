@@ -89,6 +89,20 @@ const Dashboard = () => {
           >
             DocLinks
           </Link>
+
+          <Link
+            to="/dashboard/popup-roadmap"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Roadmap Pop-Up Data
+          </Link>
+
+          <Link
+            to="/dashboard/roadmap"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            RoadMap Data
+          </Link>
         </div>
         <button
           onClick={logouthandler}

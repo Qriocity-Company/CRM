@@ -10,6 +10,8 @@ const EnquiryRoutes = require("./routes/EnquiryRoutes");
 const docRouter = require("./routes/DocRoutes");
 const linkRouter = require("./routes/linkRoutes");
 const mongoose = require("mongoose");
+const roadmaprouter = require("./routes/roadmap");
+const roadmappopuprouter = require("./routes/roadmappopup");
 const multer = require("multer");
 // const Blog = require('./models/Blog');
 
@@ -47,6 +49,10 @@ app.use("/enquiry", EnquiryRoutes);
 app.use("/api/doc", docRouter);
 
 app.use("/api/link", linkRouter);
+
+app.use("/roadmap", roadmaprouter);
+
+app.use("/roadmap-popup", roadmappopuprouter);
 
 // app.get('/api/blogs', async (req, res) => {
 //   try {
