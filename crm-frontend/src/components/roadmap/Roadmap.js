@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
-
+import { MdDelete } from "react-icons/md";
 const Roadmap = () => {
   const URL = "https://crm-backend-o6sb.onrender.com";
   const [students, setStudents] = useState([]);
@@ -59,17 +59,20 @@ const Roadmap = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-12 bg-[#2f2a7a] text-white mt-8 text-lg">
+            <div className="grid grid-cols-16 bg-[#2f2a7a] text-white mt-8 text-lg">
               <div className="col-span-2 p-4 font-bold">Name</div>
               <div className="col-span-3 p-4 font-bold">Email</div>
-              <div className="col-span-2 p-4 font-bold ">Phone Number</div>
-              <div className="col-span-3 p-4 text-xl font-bold">Date</div>
+              <div className="col-span-2 p-4 font-bold ">Contact</div>
+              <div className="col-span-2 p-4 font-bold ">College</div>
+              <div className="col-span-2 p-4 font-bold ">Department</div>
+              <div className="col-span-2 p-4 font-bold ">Year</div>
+              <div className="col-span-1 p-4 text-xl font-bold">Date</div>
               <div className="col-span-2 p-4 text-xl font-bold">Delete</div>
             </div>
             <div className="max-h-[75vh] overflow-y-scroll">
               {sortedStudents.map((student, index) => (
                 <div
-                  className="grid grid-cols-12 bg-blue-200 border-2 border-b-gray-300 text-sm"
+                  className="grid grid-cols-16 bg-blue-200 border-2 border-b-gray-300 text-sm"
                   key={index}
                 >
                   <div className="col-span-2 p-4 text-left font-bold flex flex-col gap-4">
@@ -81,12 +84,21 @@ const Roadmap = () => {
                   <div className="col-span-2 p-4 pl-10 font-bold text-left">
                     {student.phone}
                   </div>
-                  <div className="col-span-3 p-4 text-left font-bold">
+                  <div className="col-span-2 p-4 pl-10 font-bold text-left">
+                    {student.college}
+                  </div>
+                  <div className="col-span-2 p-4 pl-10 font-bold text-left">
+                    {student.department}
+                  </div>
+                  <div className="col-span-2 p-4 pl-10 font-bold text-left">
+                    {student.year}
+                  </div>
+                  <div className="col-span-1 p-4 text-left font-bold">
                     {student.date ? convertUTCtoIST(student.date) : "N/A"}
                   </div>
                   <div className="col-span-2 p-4">
                     <div
-                      className="py-2 px-4 bg-red-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-red-700"
+                      className="py-2 px-4 bg-red-500 text-white  text-center rounded-xl cursor-pointer hover:bg-red-700"
                       onClick={() => handleDel(student._id)}
                     >
                       Delete
