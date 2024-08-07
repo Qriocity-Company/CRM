@@ -2,7 +2,7 @@ const EnquiryModel = require("../models/Enquiry");
 
 exports.newStudent = async (req, res) => {
   try {
-    const { name, email, phone, date } = req.body;
+    const { name, email, phone, college, year, department, date } = req.body;
     if (!name || !email || !phone || !date) {
       return res.status(404).send({
         success: false,
@@ -15,6 +15,9 @@ exports.newStudent = async (req, res) => {
       email: email,
       phone: phone,
       date: date,
+      college: college,
+      year: year,
+      department: department,
     });
 
     await student.save();

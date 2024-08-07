@@ -13,7 +13,18 @@ const enquirySchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-
+  college: {
+    type: Number,
+    required: true,
+  },
+  year: {
+    type: Number,
+    required: true,
+  },
+  department: {
+    type: Number,
+    required: true,
+  },
   date: {
     type: String,
     required: true,

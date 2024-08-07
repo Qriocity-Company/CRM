@@ -2,7 +2,7 @@ const RoadMap = require("../models/Roadmap");
 
 exports.newStudent = async (req, res) => {
   try {
-    const { name, email, phone, date } = req.body;
+    const { name, email, phone, college, year, department, date } = req.body;
     if (!name || !email || !phone || !date) {
       return res.status(404).send({
         success: false,
@@ -14,6 +14,9 @@ exports.newStudent = async (req, res) => {
       name: name,
       email: email,
       phone: phone,
+      college: college,
+      year: year,
+      department: department,
       date: date,
     });
 
