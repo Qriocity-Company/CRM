@@ -13,7 +13,18 @@ const roadmapPopUpSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-
+  college: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: String,
+    required: true,
+  },
+  department: {
+    type: String,
+    required: true,
+  },
   date: {
     type: String,
     required: true,

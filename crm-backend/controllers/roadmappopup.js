@@ -2,7 +2,7 @@ const RoadMapPopUp = require("../models/RoadmapPopUp");
 
 exports.newStudent = async (req, res) => {
   try {
-    const { name, email, phone, date } = req.body;
+    const { name, email, phone, year, department, college, date } = req.body;
     if (!name || !email || !phone || !date) {
       return res.status(404).send({
         success: false,
@@ -14,6 +14,9 @@ exports.newStudent = async (req, res) => {
       name: name,
       email: email,
       phone: phone,
+      year: year,
+      department: department,
+      college: college,
       date: date,
     });
 
