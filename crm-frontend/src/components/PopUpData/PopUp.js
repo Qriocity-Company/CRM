@@ -62,38 +62,38 @@ const PopUp = () => {
             <div className="grid grid-cols-16 bg-[#2f2a7a] text-white mt-8 text-lg">
               <div className="col-span-2 p-4 font-bold">Name</div>
               <div className="col-span-2 p-4 font-bold">Email</div>
-              <div className="col-span-2 p-4 font-bold ">Phone Number</div>
+              <div className="col-span-2 p-4 font-bold ">Contact</div>
               <div className="col-span-2 p-4 font-bold ">College</div>
               <div className="col-span-2 p-4 font-bold ">Department </div>
               <div className="col-span-2 p-4 font-bold ">Year</div>
-              <div className="col-span-3 p-4 text-xl font-bold">Date</div>
+              <div className="col-span-2 p-4 text-xl font-bold">Date</div>
               <div className="col-span-2 p-4 text-xl font-bold">Delete</div>
             </div>
             <div className="max-h-[75vh] overflow-y-scroll">
               {sortedStudents.map((student, index) => (
                 <div
-                  className="grid grid-cols-12 bg-blue-200 border-2 border-b-gray-300 text-sm"
+                  className="grid grid-cols-16 bg-blue-200 border-2 border-b-gray-300 text-sm"
                   key={index}
                 >
-                  <div className="col-span-2 p-4 text-left font-bold flex flex-col gap-4">
+                  <div className="col-span-2 p-4 text-left font-bold flex flex-col gap-4 whitespace-normal break-words">
                     <h1>{student.name}</h1>
                   </div>
-                  <div className="col-span-3 p-4 text-left font-bold">
+                  <div className="col-span-2 p-4 text-left font-bold whitespace-normal break-words">
                     {student.email}
                   </div>
-                  <div className="col-span-2 p-4 pl-10 font-bold text-left">
+                  <div className="col-span-2 p-4 pl-10 font-bold text-left whitespace-normal break-words">
                     {student.phone}
                   </div>
-                  <div className="col-span-2 p-4 pl-10 font-bold text-left">
+                  <div className="col-span-2 p-4 pl-10 font-bold text-left whitespace-normal break-words">
                     {student.college}
                   </div>
-                  <div className="col-span-2 p-4 pl-10 font-bold text-left">
+                  <div className="col-span-2 p-4 pl-10 font-bold text-left whitespace-normal break-words">
                     {student.department}
                   </div>
-                  <div className="col-span-2 p-4 pl-10 font-bold text-left">
+                  <div className="col-span-2 p-4 pl-10 font-bold text-left ">
                     {student.year}
                   </div>
-                  <div className="col-span-3 p-4 text-left font-bold">
+                  <div className="col-span-2 p-4 text-left font-bold whitespace-normal break-words">
                     {student.date ? convertUTCtoIST(student.date) : "N/A"}
                   </div>
                   <div className="col-span-2 p-4">

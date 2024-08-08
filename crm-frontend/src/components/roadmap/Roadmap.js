@@ -35,6 +35,11 @@ const Roadmap = () => {
     }
   };
 
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  };
+
   function convertUTCtoIST(utcTimestamp) {
     const utcDate = new Date(utcTimestamp);
     const istDate = utcDate.toLocaleDateString("en-IN", {
@@ -93,8 +98,9 @@ const Roadmap = () => {
                   <div className="col-span-2 p-4 pl-10 font-bold text-left">
                     {student.year}
                   </div>
-                  <div className="col-span-1 p-4 text-left font-bold">
+                  <div className="col-span-1 p-4 text-left font-bold flex flex-col">
                     {student.date ? convertUTCtoIST(student.date) : "N/A"}
+                    {formatDateTime(student.createdAt)}
                   </div>
                   <div className="col-span-2 p-4">
                     <div
