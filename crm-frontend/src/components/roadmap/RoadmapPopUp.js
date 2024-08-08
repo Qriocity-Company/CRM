@@ -1,8 +1,8 @@
 import axios from "axios";
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
+import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
 
 const RoadmapPopUp = () => {
   const URL = "https://crm-backend-o6sb.onrender.com";
@@ -20,10 +20,10 @@ const RoadmapPopUp = () => {
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
         setStudents(sortedStudents);
-        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+    } finally {
       setLoading(false);
     }
   };
@@ -63,6 +63,17 @@ const RoadmapPopUp = () => {
     getStudents();
   }, []);
 
+  // CSV Data formatting
+  const csvData = students.map((student) => ({
+    Name: student.name,
+    Email: student.email,
+    Contact: student.phone,
+    College: student.college,
+    Department: student.department,
+    Year: student.year,
+    Date: formatDateTime(student.createdAt),
+  }));
+
   return (
     <>
       <div className="content p-4">
@@ -75,7 +86,16 @@ const RoadmapPopUp = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-16 bg-[#2f2a7a] text-white mt-8 text-lg">
+            <div className="flex justify-between items-center mt-8">
+              <CSVLink
+                data={csvData}
+                filename={"students_data.csv"}
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+              >
+                Download CSV
+              </CSVLink>
+            </div>
+            <div className="grid grid-cols-16 bg-[#2f2a7a] text-white mt-4 text-lg">
               <div className="col-span-2 p-4 font-bold">Name</div>
               <div className="col-span-3 p-4 font-bold">Email</div>
               <div className="col-span-2 p-4 font-bold">Contact</div>
