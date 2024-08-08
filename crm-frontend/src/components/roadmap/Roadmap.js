@@ -7,7 +7,8 @@ const Roadmap = () => {
   const URL = "https://crm-backend-o6sb.onrender.com";
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const getStudents = async () => {
     setLoading(true);
     try {
@@ -34,24 +35,26 @@ const Roadmap = () => {
       console.log(error);
     }
   };
-
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= Math.ceil(students.length / itemsPerPage)) {
+      setCurrentPage(page);
+    }
+  };
+  const indexOfLastStudent = currentPage * itemsPerPage;
+  const indexOfFirstStudent = indexOfLastStudent - itemsPerPage;
+  const currentStudents = students.slice(
+    indexOfFirstStudent,
+    indexOfLastStudent
+  );
   const formatDateTime = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
   };
 
-  function convertUTCtoIST(utcTimestamp) {
-    const utcDate = new Date(utcTimestamp);
-    const istDate = utcDate.toLocaleDateString("en-IN", {
-      timeZone: "Asia/Kolkata",
-    });
-    return istDate;
-  }
-
   useEffect(() => {
     getStudents();
   }, []);
-  const sortedStudents = students.sort(
+  const sortedStudents = currentStudents.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
   return (
@@ -111,6 +114,28 @@ const Roadmap = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="flex justify-between items-center mt-4">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md disabled:bg-gray-100"
+              >
+                Previous
+              </button>
+              <span>
+                Page {currentPage} of{" "}
+                {Math.ceil(students.length / itemsPerPage)}
+              </span>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={
+                  currentPage === Math.ceil(students.length / itemsPerPage)
+                }
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md disabled:bg-gray-100"
+              >
+                Next
+              </button>
             </div>
           </>
         )}
