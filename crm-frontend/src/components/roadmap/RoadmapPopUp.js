@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
-
+import { MdDelete } from "react-icons/md";
 const RoadmapPopUp = () => {
   const URL = "https://crm-backend-o6sb.onrender.com";
   const [students, setStudents] = useState([]);
@@ -23,7 +23,10 @@ const RoadmapPopUp = () => {
       console.log(error);
     }
   };
-
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  };
   const handleDel = async (id) => {
     try {
       const { data } = await axios.post(`${URL}/roadmap-popup/delStudent`, {
@@ -48,9 +51,9 @@ const RoadmapPopUp = () => {
   useEffect(() => {
     getStudents();
   }, []);
-  const sortedStudents = students
-    .slice()
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedStudents = students.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
   return (
     <>
       <div className="content p-4">
@@ -70,8 +73,8 @@ const RoadmapPopUp = () => {
               <div className="col-span-2 p-4 font-bold ">College</div>
               <div className="col-span-2 p-4 font-bold ">Department</div>
               <div className="col-span-2 p-4 font-bold ">Year</div>
-              <div className="col-span-1 p-4 text-xl font-bold">Date</div>
-              <div className="col-span-2 p-4 text-xl font-bold">Delete</div>
+              <div className="col-span-2 p-4 text-xl font-bold">Date</div>
+              <div className="col-span-1 p-4 text-xl font-bold">Delete</div>
             </div>
             <div className="max-h-[75vh] overflow-y-scroll">
               {sortedStudents.map((student, index) => (
@@ -97,15 +100,15 @@ const RoadmapPopUp = () => {
                   <div className="col-span-2 p-4 pl-10 font-bold text-left">
                     {student.year}
                   </div>
-                  <div className="col-span-1 p-4 text-left font-bold">
-                    {student.date ? convertUTCtoIST(student.date) : "N/A"}
+                  <div className="col-span-2 p-4 text-left font-bold">
+                    {formatDateTime(student.createdAt)}
                   </div>
-                  <div className="col-span-2 p-4">
+                  <div className="col-span-1 p-4">
                     <div
-                      className="py-2 px-4 bg-red-500 text-white  text-center rounded-xl cursor-pointer hover:bg-red-700"
+                      className="p-2 bg-red-500 text-white  flex justify-center items-center rounded-xl cursor-pointer hover:bg-red-700"
                       onClick={() => handleDel(student._id)}
                     >
-                      Delete
+                      <MdDelete size={30} />
                     </div>
                   </div>
                 </div>
