@@ -8,7 +8,7 @@ router.post('/send',async (req,res)=>{
     try{
 
         const { formData } = req.body;
-        const {senderEmail,message,phoneNumber,name} = formData
+        const {senderEmail,message,phoneNumber,name,departmentCollege,YearCollege,College} = formData
         
         console.log("received:",name);
 
@@ -17,6 +17,9 @@ router.post('/send',async (req,res)=>{
             email:senderEmail,
             phoneNumber:phoneNumber,
             message:message,
+            department:departmentCollege,
+            year:YearCollege,
+            college:College,
             id: uuid.v4()
         });
 
