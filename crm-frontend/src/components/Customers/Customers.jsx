@@ -41,39 +41,34 @@ const Customers = () => {
         <div className='p-[2rem]'>
             <h1 className='font-semibold text-2xl'>Customer Messages Received</h1>
 
-            <div className='grid grid-cols-6 bg-[#2f2a7a] text-white mt-4'>
-                <div className='col-span-1 p-4 text-xl font-bold'>
-                    Name
-                </div>
-                <div className='col-span-2 p-4 text-xl font-bold'>
-                    Message
-                </div>
-                <div className='col-span-1 p-4 text-xl font-bold text-left'>
-                    Phone Number
-                </div>
-                <div className='col-span-1 p-4 text-xl font-bold text-left'>
-                    Date
-                </div>
+            <div className='grid grid-cols-9 bg-[#2f2a7a] text-white mt-4'>
+                <div className='col-span-1 p-4 text-xl font-bold'>Name</div>
+                <div className='col-span-2 p-4 text-xl font-bold'>Message</div>
+                <div className='col-span-1 p-4 text-xl font-bold text-left'>Phone Number</div>
+                <div className='col-span-1 p-4 text-xl font-bold text-left'>College</div>
+                <div className='col-span-1 p-4 text-xl font-bold text-left'>Department</div>
+                <div className='col-span-1 p-4 text-xl font-bold text-left'>Year</div>
+                <div className='col-span-1 p-4 text-xl font-bold text-left'>Date</div>
                 <div className='col-span-1 p-4'></div>
             </div>
 
             <div className='m-h-[75vh] overflow-y-scroll'>
                 {customers.map((customer, index) => (
-                    <div className='grid grid-cols-6 bg-blue-200 border-2 border-b-gray-300' key={index}>
-                        <div className='col-span-1 p-4 font-semibold'>
-                            {customer.name}
-                        </div>
-                        <div className='col-span-2 p-4'>
-                            {customer.message}
-                        </div>
-                        <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>
-                            {customer.phoneNumber}
-                        </div>
+                    <div className='grid grid-cols-9 bg-blue-200 border-2 border-b-gray-300' key={index}>
+                        <div className='col-span-1 p-4 font-semibold'>{customer.name}</div>
+                        <div className='col-span-2 p-4'>{customer.message}</div>
+                        <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>{customer.phoneNumber}</div>
+                        <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>{customer.college || 'N/A'}</div>
+                        <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>{customer.department || 'N/A'}</div>
+                        <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>{customer.year || 'N/A'}</div>
                         <div className='col-span-1 p-4 pl-10 text-xl font-bold text-left'>
                             {customer.date ? convertUTCtoIST(customer.date) : 'N/A'}
                         </div>
                         <div className='col-span-1 p-4'>
-                            <div className='py-2 bg-red-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-red-700' onClick={() => deleteCustomer(customer.id)}>
+                            <div
+                                className='py-2 bg-red-500 text-white font-semibold text-center rounded-xl cursor-pointer hover:bg-red-700'
+                                onClick={() => deleteCustomer(customer.id)}
+                            >
                                 Delete
                             </div>
                         </div>
