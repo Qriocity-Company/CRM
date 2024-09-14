@@ -13,15 +13,16 @@ const PopUp = () => {
     try {
       const { data } = await axios.get(`${URL}/enquiry/getStudent`);
       if (data?.success) {
+        // Sort by date in descending order (latest first)
         const sortedStudents = data.students.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
         setStudents(sortedStudents);
-        setLoading(false);
       }
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   const handleDel = async (id) => {
@@ -46,9 +47,7 @@ const PopUp = () => {
   useEffect(() => {
     getStudents();
   }, []);
-  const sortedStudents = students
-    .slice()
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
   return (
     <>
       <div className="content p-4">
@@ -66,13 +65,13 @@ const PopUp = () => {
               <div className="col-span-2 p-4 font-bold">Email</div>
               <div className="col-span-2 p-4 font-bold ">Contact</div>
               <div className="col-span-2 p-4 font-bold ">College</div>
-              <div className="col-span-2 p-4 font-bold ">Department </div>
+              <div className="col-span-2 p-4 font-bold ">Department</div>
               <div className="col-span-2 p-4 font-bold ">Year</div>
               <div className="col-span-2 p-4 text-xl font-bold">Date</div>
               <div className="col-span-2 p-4 text-xl font-bold">Delete</div>
             </div>
             <div className="max-h-[75vh] overflow-y-scroll">
-              {sortedStudents.map((student, index) => (
+              {students.map((student, index) => (
                 <div
                   className="grid grid-cols-16 bg-blue-200 border-2 border-b-gray-300 text-sm"
                   key={index}
