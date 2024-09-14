@@ -52,7 +52,9 @@ const PopUp = () => {
   return (
     <>
       <div className="content p-4">
-        <h1 className="font-bold text-4xl ml-10 mt-10">Pop Up Form Data</h1>
+        <h1 className="font-bold text-4xl ml-10 mt-10">
+          Home Page pop up data
+        </h1>
         {loading ? (
           <div className="flex justify-center items-center mt-40">
             <ImSpinner8 size={80} className="animate-spin" />
