@@ -14,11 +14,11 @@ const enquirySchema = new mongoose.Schema({
     required: true,
   },
   college: {
-    type: Number,
+    type: String,
     required: true,
   },
   year: {
-    type: Number,
+    type: String,
     required: true,
   },
   department: {
