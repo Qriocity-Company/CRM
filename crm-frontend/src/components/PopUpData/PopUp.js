@@ -48,7 +48,7 @@ const PopUp = () => {
   }, []);
   const sortedStudents = students
     .slice()
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
   return (
     <>
       <div className="content p-4">
