@@ -28,7 +28,7 @@ const PopUp = () => {
     try {
       const { data } = await axios.post(`${URL}/enquiry/delStudent`, { id });
       if (data?.success) {
-        window.location.reload();
+        getStudents();
       }
     } catch (error) {
       console.log(error);
