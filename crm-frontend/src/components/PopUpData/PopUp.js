@@ -13,9 +13,9 @@ const PopUp = () => {
     try {
       const { data } = await axios.get(`${URL}/enquiry/getStudent`);
       if (data?.success) {
-        // Sort by date in descending order (latest first)
+        // Sort by createdAt in descending order (latest first)
         const sortedStudents = data.students.sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
         setStudents(sortedStudents);
       }
@@ -29,7 +29,7 @@ const PopUp = () => {
     try {
       const { data } = await axios.post(`${URL}/enquiry/delStudent`, { id });
       if (data?.success) {
-        getStudents();
+        getStudents(); // Refresh the students list after deletion
       }
     } catch (error) {
       console.log(error);
@@ -96,7 +96,7 @@ const PopUp = () => {
                   </div>
                   <div className="col-span-2 p-4 text-left font-bold whitespace-normal break-words">
                     {student.date ? convertUTCtoIST(student.date) : "N/A"}{" "}
-                    {student.createdAt}
+                    {convertUTCtoIST(student.createdAt)}
                   </div>
                   <div className="col-span-2 p-4">
                     <div
