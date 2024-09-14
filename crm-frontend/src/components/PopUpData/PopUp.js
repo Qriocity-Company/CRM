@@ -95,7 +95,8 @@ const PopUp = () => {
                     {student.year}
                   </div>
                   <div className="col-span-2 p-4 text-left font-bold whitespace-normal break-words">
-                    {student.date ? convertUTCtoIST(student.date) : "N/A"}
+                    {student.date ? convertUTCtoIST(student.date) : "N/A"}{" "}
+                    {student.createdAt}
                   </div>
                   <div className="col-span-2 p-4">
                     <div
