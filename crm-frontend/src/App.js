@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import BlogItem from "./components/Blog/BlogItem";
 import Customers from "./components/Customers/Customers";
+import AdsCustomer from "./components/AdsCustomer/AdsCustomer";
 import Blog from "./components/NewBlog/Blog";
 import AddCategory from "./components/AddCategory";
 import AllStudents from "./components/Students/AllStudents";
@@ -54,6 +55,10 @@ const routes = createBrowserRouter([
       {
         path: "customers",
         element: <Customers />,
+      },
+      {
+        path: "adsCustomer",
+        element: <AdsCustomer />,
       },
       {
         path: "students",

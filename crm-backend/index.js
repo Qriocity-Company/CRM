@@ -5,10 +5,12 @@ const app = express();
 const AuthRouter = require("./routes/authRoutes");
 const BlogRouter = require("./routes/blogRoutes");
 const CustomerRouter = require("./routes/customerRoutes");
+const AdsCustomerRouter = require("./routes/adsCustomer");
 const StudentRoutes = require("./routes/studentRoutes");
 const EnquiryRoutes = require("./routes/EnquiryRoutes");
 const docRouter = require("./routes/DocRoutes");
 const linkRouter = require("./routes/linkRoutes");
+
 const mongoose = require("mongoose");
 const roadmaprouter = require("./routes/roadmap");
 const roadmappopuprouter = require("./routes/roadmappopup");
@@ -41,6 +43,8 @@ app.use("/auth", AuthRouter);
 app.use("/blog", BlogRouter);
 
 app.use("/customer", CustomerRouter);
+
+app.use("/adsCustomer", AdsCustomerRouter);
 
 app.use("/students", StudentRoutes);
 

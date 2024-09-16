@@ -63,6 +63,12 @@ const Dashboard = () => {
             Website & Query
           </Link>
           <Link
+            to="/dashboard/adsCustomer"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Ads Leads
+          </Link>
+          <Link
             to="/dashboard/students"
             className="hover:bg-blue-400 p-2 rounded-xl  "
           >
