@@ -12,6 +12,6 @@ const customerSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
 });
 
-const GoogleAdsCustomer = mongoose.model("CustomerAds", customerSchema);
+const GoogleAdsCustomer = mongoose.model("GoogleCustomerAds", customerSchema);
 
 module.exports = GoogleAdsCustomer;
