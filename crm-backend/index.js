@@ -10,6 +10,7 @@ const StudentRoutes = require("./routes/studentRoutes");
 const EnquiryRoutes = require("./routes/EnquiryRoutes");
 const docRouter = require("./routes/DocRoutes");
 const linkRouter = require("./routes/linkRoutes");
+const GoogleAdsRoutes = require("./routes/googleAdsRoutes");
 
 const mongoose = require("mongoose");
 const roadmaprouter = require("./routes/roadmap");
@@ -45,6 +46,8 @@ app.use("/blog", BlogRouter);
 app.use("/customer", CustomerRouter);
 
 app.use("/adsCustomer", AdsCustomerRouter);
+
+app.use("/googleadsCustomer", GoogleAdsRoutes);
 
 app.use("/students", StudentRoutes);
 

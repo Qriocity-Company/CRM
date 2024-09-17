@@ -66,7 +66,13 @@ const Dashboard = () => {
             to="/dashboard/adsCustomer"
             className="hover:bg-blue-400 p-2 rounded-xl  "
           >
-            Ads Leads
+            FaceBook Ads Leads
+          </Link>
+          <Link
+            to="/dashboard/googleadsCustomer"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Google Ads Leads
           </Link>
           <Link
             to="/dashboard/students"

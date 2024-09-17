@@ -3,13 +3,13 @@ import axios from "axios";
 
 const URL = "https://crm-backend-o6sb.onrender.com";
 
-const Customers = () => {
+const GoogleAdsCustomer = () => {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get(`${URL}/adsCustomer/fetch`);
+        const response = await axios.get(`${URL}/googleadsCustomer/fetch`);
         const sortedCustomers = response.data.customers.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
@@ -25,7 +25,9 @@ const Customers = () => {
 
   const deleteCustomer = async (id) => {
     try {
-      const response = await axios.delete(`${URL}/adsCustomer/delete/${id}`);
+      const response = await axios.delete(
+        `${URL}/googleadsCustomer/delete/${id}`
+      );
       console.log(response.data);
       setCustomers(customers.filter((element) => element.id !== id));
     } catch (error) {
@@ -43,7 +45,7 @@ const Customers = () => {
 
   return (
     <div className="p-8">
-      <h1 className="font-semibold text-2xl mb-6">Face Book Ads Lead</h1>
+      <h1 className="font-semibold text-2xl mb-6">Google Ads Leads</h1>
 
       <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg">
         <div className="p-2 font-bold">Name</div>
@@ -86,4 +88,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default GoogleAdsCustomer;
