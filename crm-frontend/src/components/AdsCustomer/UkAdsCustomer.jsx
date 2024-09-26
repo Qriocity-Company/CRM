@@ -45,7 +45,7 @@ const UkAdsCustomer = () => {
     <div className="p-8">
       <h1 className="font-semibold text-2xl mb-6">Face Book Ads Lead</h1>
 
-      <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg">
+      <div className="grid grid-cols-6 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg">
         <div className="p-2 font-bold">Name</div>
         <div className="p-2 font-bold">Requirement</div>
         <div className="p-2 font-bold">Phone Number</div>
@@ -57,7 +57,7 @@ const UkAdsCustomer = () => {
       <div className="max-h-[75vh] overflow-y-scroll">
         {customers.map((customer, index) => (
           <div
-            className="grid grid-cols-8 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
+            className="grid grid-cols-6 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
             key={index}
           >
             <div className="p-2">{customer.name}</div>

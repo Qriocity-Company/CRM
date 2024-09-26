@@ -22,6 +22,7 @@ import PopUp from "./components/PopUpData/PopUp";
 import RoadmapPopUp from "./components/roadmap/RoadmapPopUp";
 import Roadmap from "./components/roadmap/Roadmap";
 import GoogleAdsCustomer from "./components/AdsCustomer/GoogleAdsCustomer";
+import UkAdsCustomer from "./components/AdsCustomer/UkAdsCustomer";
 
 const routes = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const routes = createBrowserRouter([
       {
         path: "roadmap",
         element: <Roadmap />,
+      },
+      {
+        path: "ukAdsCustomer",
+        element: <UkAdsCustomer />,
       },
     ],
   },
