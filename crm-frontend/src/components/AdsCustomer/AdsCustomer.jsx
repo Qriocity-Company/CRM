@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ImSpinner8 } from "react-icons/im"; // Import spinner
 
 const URL = "https://crm-backend-o6sb.onrender.com";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -14,9 +16,11 @@ const Customers = () => {
           (a, b) => new Date(b.date) - new Date(a.date)
         );
         setCustomers(sortedCustomers);
+        setLoading(false); // Stop loading after data is fetched
         console.log(sortedCustomers);
       } catch (error) {
         console.error("Error fetching customers:", error);
+        setLoading(false); // Stop loading if an error occurs
       }
     };
 
@@ -39,6 +43,15 @@ const Customers = () => {
       timeZone: "Asia/Kolkata",
     });
     return istDateTime;
+  }
+
+  if (loading) {
+    // Display spinner when loading
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ImSpinner8 className="animate-spin text-4xl text-blue-500" />
+      </div>
+    );
   }
 
   return (
@@ -74,7 +87,7 @@ const Customers = () => {
             <div className="p-2">
               <button
                 className="py-1 px-4 bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all"
-                onClick={() => deleteCustomer(customer.id)}
+                onClick={() => deleteCustomer(customer._id)}
               >
                 Delete
               </button>
