@@ -7,24 +7,22 @@ const URL = "https://crm-backend-o6sb.onrender.com";
 const UkAdsCustomer = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
-
+  const fetchCustomers = async () => {
+    try {
+      const response = await axios.get(`${URL}/ukAdsCustomer/fetch`);
+      // Sort customers based on 'createdAt' timestamp in descending order
+      const sortedCustomers = response.data.customers.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      setCustomers(sortedCustomers);
+      setLoading(false); // Stop loading after data is fetched
+      console.log(sortedCustomers);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+      setLoading(false); // Stop loading if an error occurs
+    }
+  };
   useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const response = await axios.get(`${URL}/ukAdsCustomer/fetch`);
-        // Sort customers based on 'createdAt' timestamp in descending order
-        const sortedCustomers = response.data.customers.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        setCustomers(sortedCustomers);
-        setLoading(false); // Stop loading after data is fetched
-        console.log(sortedCustomers);
-      } catch (error) {
-        console.error("Error fetching customers:", error);
-        setLoading(false); // Stop loading if an error occurs
-      }
-    };
-
     fetchCustomers();
   }, []);
 
@@ -33,6 +31,7 @@ const UkAdsCustomer = () => {
       const response = await axios.delete(`${URL}/ukAdsCustomer/delete/${id}`);
       console.log(response.data);
       setCustomers(customers.filter((element) => element.id !== id));
+      fetchCustomers();
     } catch (error) {
       console.error("Error deleting customer:", error);
     }

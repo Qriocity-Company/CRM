@@ -51,10 +51,10 @@ router.get("/fetch", async (req, res) => {
 });
 
 router.delete("/delete/:id", async (req, res) => {
-  const customerId = req.params.id;
+  const id = req.params.id;
 
   try {
-    const deletedCustomer = await Customer.findOneAndDelete({ id: customerId });
+    const deletedCustomer = await Customer.findByIdAndDelete(id);
 
     if (!deletedCustomer) {
       return res.status(404).json({ message: "Customer not found" });
