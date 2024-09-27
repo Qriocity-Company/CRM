@@ -7,11 +7,13 @@ const BlogRouter = require("./routes/blogRoutes");
 const CustomerRouter = require("./routes/customerRoutes");
 const AdsCustomerRouter = require("./routes/adsCustomer");
 const UkAdsCustomerRouter = require("./routes/ukRoutes");
+const phdProffesorrRouter = require("./routes/phdProffesor");
 const StudentRoutes = require("./routes/studentRoutes");
 const EnquiryRoutes = require("./routes/EnquiryRoutes");
 const docRouter = require("./routes/DocRoutes");
 const linkRouter = require("./routes/linkRoutes");
 const GoogleAdsRoutes = require("./routes/googleAdsRoutes");
+const hardwareRouter = require("./routes/hardwareCustomers");
 
 const mongoose = require("mongoose");
 const roadmaprouter = require("./routes/roadmap");
@@ -49,6 +51,10 @@ app.use("/customer", CustomerRouter);
 app.use("/adsCustomer", AdsCustomerRouter);
 
 app.use("/ukAdsCustomer", UkAdsCustomerRouter);
+
+app.use("/phdProffesors", phdProffesorrRouter);
+
+app.use("/hardwareCustomers", hardwareRouter);
 
 app.use("/googleadsCustomer", GoogleAdsRoutes);
 

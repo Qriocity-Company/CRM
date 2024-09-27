@@ -23,6 +23,8 @@ import RoadmapPopUp from "./components/roadmap/RoadmapPopUp";
 import Roadmap from "./components/roadmap/Roadmap";
 import GoogleAdsCustomer from "./components/AdsCustomer/GoogleAdsCustomer";
 import UkAdsCustomer from "./components/AdsCustomer/UkAdsCustomer";
+import HardwareCustomers from "./components/AdsCustomer/HardwareCutsomers";
+import PHDCustomers from "./components/AdsCustomer/PhdProffesors";
 
 const routes = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ const routes = createBrowserRouter([
       {
         path: "adsCustomer",
         element: <AdsCustomer />,
+      },
+      {
+        path: "hardwareLeads",
+        element: <HardwareCustomers />,
+      },
+      {
+        path: "phdLeads",
+        element: <PHDCustomers />,
       },
       {
         path: "googleadsCustomer",
