@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ImSpinner8 } from "react-icons/im"; // Import spinner
+import { CSVLink } from "react-csv";
 
 const URL = "https://crm-backend-o6sb.onrender.com";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
+  const [currentPage, setCurrentPage] = useState(1); // State to track the current page
+  const customersPerPage = 10; // Set number of customers per page
+
   const fetchCustomers = async () => {
     try {
       const response = await axios.get(`${URL}/adsCustomer/fetch`);
@@ -21,6 +25,7 @@ const Customers = () => {
       setLoading(false); // Stop loading if an error occurs
     }
   };
+
   useEffect(() => {
     fetchCustomers();
   }, []);
@@ -44,6 +49,43 @@ const Customers = () => {
     return istDateTime;
   }
 
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  };
+
+  const csvData = customers.map((customer) => ({
+    Name: customer.name,
+    Message: customer.message,
+    Contact: customer.phoneNumber,
+    College: customer.college,
+    Department: customer.department,
+    Year: customer.year,
+    Date: formatDateTime(customer.date),
+  }));
+
+  // Pagination logic
+  const indexOfLastCustomer = currentPage * customersPerPage;
+  const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+  const currentCustomers = customers.slice(
+    indexOfFirstCustomer,
+    indexOfLastCustomer
+  );
+
+  const totalPages = Math.ceil(customers.length / customersPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   if (loading) {
     // Display spinner when loading
     return (
@@ -57,7 +99,17 @@ const Customers = () => {
     <div className="p-8">
       <h1 className="font-semibold text-2xl mb-6">Face Book Ads Lead</h1>
 
-      <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg">
+      <div className="flex justify-between items-center mt-8">
+        <CSVLink
+          data={csvData}
+          filename={"students_data.csv"}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+        >
+          Download CSV
+        </CSVLink>
+      </div>
+
+      <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-[10px]">
         <div className="p-2 font-bold">Name</div>
         <div className="p-2 font-bold">Message</div>
         <div className="p-2 font-bold">Phone Number</div>
@@ -69,7 +121,7 @@ const Customers = () => {
       </div>
 
       <div className="max-h-[75vh] overflow-y-scroll">
-        {customers.map((customer, index) => (
+        {currentCustomers.map((customer, index) => (
           <div
             className="grid grid-cols-8 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
             key={index}
@@ -93,6 +145,31 @@ const Customers = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center items-center space-x-4 mt-4">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${
+            currentPage === 1 ? "cursor-not-allowed" : ""
+          }`}
+        >
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${
+            currentPage === totalPages ? "cursor-not-allowed" : ""
+          }`}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
