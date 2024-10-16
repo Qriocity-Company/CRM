@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
+import { CSVLink } from "react-csv";
 import { ImSpinner8 } from "react-icons/im";
 
 const AllStudents = () => {
@@ -43,6 +44,21 @@ const AllStudents = () => {
     return istDateTime;
   }
 
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  };
+
+  const csvData = students.map((student) => ({
+    Name: student.name,
+    Email: student.email,
+    Contact: student.phone,
+    College: student.college,
+    Department: student.department,
+    Year: student.year,
+    Date: formatDateTime(student.createdAt),
+  }));
+
   useEffect(() => {
     getStudents();
   }, []);
@@ -57,6 +73,15 @@ const AllStudents = () => {
           </div>
         ) : (
           <>
+            <div className="flex justify-between items-center mt-8">
+              <CSVLink
+                data={csvData}
+                filename={"students_data.csv"}
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+              >
+                Download CSV
+              </CSVLink>
+            </div>
             <div className="grid grid-cols-11 bg-[#2f2a7a] text-white mt-8 text-lg">
               <div className="col-span-2 p-4 font-bold">Name</div>
               <div className="col-span-2 p-4 font-bold">Email</div>
