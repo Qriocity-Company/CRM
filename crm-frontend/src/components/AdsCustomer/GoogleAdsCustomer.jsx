@@ -7,21 +7,21 @@ const GoogleAdsCustomer = () => {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const response = await axios.get(`${URL}/googleadsCustomer/fetch`);
-        const sortedCustomers = response.data.customers.sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
-        );
-        setCustomers(sortedCustomers);
-        console.log(sortedCustomers);
-      } catch (error) {
-        console.error("Error fetching customers:", error);
-      }
-    };
-
     fetchCustomers();
   }, []);
+
+  const fetchCustomers = async () => {
+    try {
+      const response = await axios.get(`${URL}/googleadsCustomer/fetch`);
+      const sortedCustomers = response.data.customers.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+      setCustomers(sortedCustomers);
+      console.log(sortedCustomers);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+    }
+  };
 
   const deleteCustomer = async (id) => {
     try {
@@ -30,6 +30,7 @@ const GoogleAdsCustomer = () => {
       );
       console.log(response.data);
       setCustomers(customers.filter((element) => element.id !== id));
+      fetchCustomers();
     } catch (error) {
       console.error("Error deleting customer:", error);
     }
@@ -76,7 +77,7 @@ const GoogleAdsCustomer = () => {
             <div className="p-2">
               <button
                 className="py-1 px-4 bg-red-500 text-white rounded-lg hover:bg-red-700 transition-all"
-                onClick={() => deleteCustomer(customer.id)}
+                onClick={() => deleteCustomer(customer._id)}
               >
                 Delete
               </button>
