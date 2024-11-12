@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { CSVLink } from "react-csv";
 
 const URL = "https://crm-backend-o6sb.onrender.com";
 
@@ -40,14 +41,36 @@ const Customers = () => {
     });
     return istDateTime;
   }
+  const formatDateTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  };
+  const csvData = customers.map((customer) => ({
+    Name: customer.name,
+    message: customer.message,
+    Contact: customer.phoneNumber,
+    College: customer.college,
+    Department: customer.department,
+    Year: customer.year,
+    Date: formatDateTime(customer.date),
+  }));
 
   return (
     <div className="p-8">
       <h1 className="font-semibold text-2xl mb-6">
         Customer Messages Received
       </h1>
+      <div className="flex justify-between items-center mt-8">
+        <CSVLink
+          data={csvData}
+          filename={"customers_data.csv"}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+        >
+          Download CSV
+        </CSVLink>
+      </div>
 
-      <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg">
+      <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-10">
         <div className="p-2 font-bold">Name</div>
         <div className="p-2 font-bold">Message</div>
         <div className="p-2 font-bold">Phone Number</div>
