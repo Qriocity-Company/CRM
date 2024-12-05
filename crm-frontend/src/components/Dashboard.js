@@ -69,6 +69,12 @@ const Dashboard = () => {
             FaceBook Ads Leads
           </Link>
           <Link
+            to="/dashboard/campus_expert"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Campus Expert program
+          </Link>
+          <Link
             to="/dashboard/googleadsCustomer"
             className="hover:bg-blue-400 p-2 rounded-xl  "
           >
