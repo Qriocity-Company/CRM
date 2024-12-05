@@ -97,7 +97,9 @@ const CampusExpert = () => {
 
   return (
     <div className="p-8">
-      <h1 className="font-semibold text-2xl mb-6">Face Book Ads Lead</h1>
+      <h1 className="font-semibold text-2xl mb-6">
+        Campus Expert Program Ads Lead
+      </h1>
 
       <div className="flex justify-between items-center mt-8">
         <CSVLink
