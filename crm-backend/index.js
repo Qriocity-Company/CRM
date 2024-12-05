@@ -14,7 +14,7 @@ const docRouter = require("./routes/DocRoutes");
 const linkRouter = require("./routes/linkRoutes");
 const GoogleAdsRoutes = require("./routes/googleAdsRoutes");
 const hardwareRouter = require("./routes/hardwareCustomers");
-
+const earnrouter = require("./routes/EarnCustomers");
 const mongoose = require("mongoose");
 const roadmaprouter = require("./routes/roadmap");
 const roadmappopuprouter = require("./routes/roadmappopup");
@@ -69,6 +69,8 @@ app.use("/api/link", linkRouter);
 app.use("/roadmap", roadmaprouter);
 
 app.use("/roadmap-popup", roadmappopuprouter);
+
+app.use("/earnCustomer", earnrouter);
 
 // app.get('/api/blogs', async (req, res) => {
 //   try {
