@@ -61,7 +61,7 @@ const Customers = () => {
     indexOfLastCustomer
   );
 
-  const csvData = currentCustomers.map((customer) => ({
+  const csvData = customers.map((customer) => ({
     Name: customer.name,
     message: customer.message,
     Contact: customer.phoneNumber,
