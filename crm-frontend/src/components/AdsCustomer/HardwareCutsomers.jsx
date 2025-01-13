@@ -6,7 +6,10 @@ const URL = "https://crm-backend-o6sb.onrender.com";
 
 const HardwareCustomers = () => {
   const [customers, setCustomers] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const entriesPerPage = 10;
+
   const fetchCustomers = async () => {
     try {
       const response = await axios.get(`${URL}/hardwareCustomers/fetch`);
@@ -14,25 +17,21 @@ const HardwareCustomers = () => {
         (a, b) => new Date(b.date) - new Date(a.date)
       );
       setCustomers(sortedCustomers);
-      setLoading(false); // Stop loading after data is fetched
-      console.log(sortedCustomers);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching customers:", error);
-      setLoading(false); // Stop loading if an error occurs
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchCustomers();
   }, []);
 
   const deleteCustomer = async (id) => {
     try {
-      const response = await axios.delete(
-        `${URL}/hardwareCustomers/delete/${id}`
-      );
-      console.log(response.data);
-      setCustomers(customers.filter((element) => element.id !== id));
-      fetchCustomers();
+      await axios.delete(`${URL}/hardwareCustomers/delete/${id}`);
+      setCustomers(customers.filter((customer) => customer._id !== id));
     } catch (error) {
       console.error("Error deleting customer:", error);
     }
@@ -46,8 +45,20 @@ const HardwareCustomers = () => {
     return istDateTime;
   }
 
+  const indexOfLastEntry = currentPage * entriesPerPage;
+  const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
+  const currentEntries = customers.slice(indexOfFirstEntry, indexOfLastEntry);
+  const totalPages = Math.ceil(customers.length / entriesPerPage);
+
+  const handlePrevious = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
   if (loading) {
-    // Display spinner when loading
     return (
       <div className="flex justify-center items-center h-screen">
         <ImSpinner8 className="animate-spin text-4xl text-blue-500" />
@@ -59,7 +70,9 @@ const HardwareCustomers = () => {
     <div className="p-8">
       <h1 className="font-semibold text-2xl mb-6">Hardware Customers Lead</h1>
 
-      <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg">
+      {/* Table Header */}
+      <div className="grid grid-cols-9 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg">
+        <div className="p-2 font-bold">S.No</div>
         <div className="p-2 font-bold">Name</div>
         <div className="p-2 font-bold">Message</div>
         <div className="p-2 font-bold">Phone Number</div>
@@ -70,12 +83,14 @@ const HardwareCustomers = () => {
         <div className="p-2"></div>
       </div>
 
+      {/* Table Body */}
       <div className="max-h-[75vh] overflow-y-scroll">
-        {customers.map((customer, index) => (
+        {currentEntries.map((customer, index) => (
           <div
-            className="grid grid-cols-8 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
+            className="grid grid-cols-9 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
             key={index}
           >
+            <div className="p-2">{indexOfFirstEntry + index + 1}</div>
             <div className="p-2">{customer.name}</div>
             <div className="p-2">{customer.message}</div>
             <div className="p-2">{customer.phoneNumber}</div>
@@ -93,6 +108,27 @@ const HardwareCustomers = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="flex justify-center gap-5 items-center mt-4">
+        <button
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 disabled:opacity-50"
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span className="text-gray-700">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 disabled:opacity-50"
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
