@@ -108,7 +108,8 @@ const Customers = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-10">
+            <div className="grid grid-cols-9 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-10">
+              <div className="p-2 font-bold">S.No</div>
               <div className="p-2 font-bold">Name</div>
               <div className="p-2 font-bold">Message</div>
               <div className="p-2 font-bold">Phone Number</div>
@@ -122,9 +123,10 @@ const Customers = () => {
             <div className="max-h-[75vh] overflow-y-scroll">
               {currentCustomers.map((customer, index) => (
                 <div
-                  className="grid grid-cols-8 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
+                  className="grid grid-cols-9 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
                   key={index}
                 >
+                  <div className="p-2">{indexOfFirstCustomer + index + 1}</div>
                   <div className="p-2">{customer.name}</div>
                   <div className="p-2">{customer.message}</div>
                   <div className="p-2">{customer.phoneNumber}</div>
@@ -147,7 +149,7 @@ const Customers = () => {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex justify-center mt-6 space-x-4">
+            <div className="flex justify-center mt-6 space-x-4 items-center">
               <button
                 onClick={goToPrevPage}
                 className="px-4 py-2 rounded-md bg-blue-500 text-white disabled:bg-gray-300"
@@ -155,6 +157,10 @@ const Customers = () => {
               >
                 Previous
               </button>
+              <span className="text-lg font-medium">
+                Page {currentPage} of{" "}
+                {Math.ceil(customers.length / itemsPerPage)}
+              </span>
               <button
                 onClick={goToNextPage}
                 className="px-4 py-2 rounded-md bg-blue-500 text-white disabled:bg-gray-300"
