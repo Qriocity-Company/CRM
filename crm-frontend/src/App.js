@@ -26,6 +26,7 @@ import UkAdsCustomer from "./components/AdsCustomer/UkAdsCustomer";
 import HardwareCustomers from "./components/AdsCustomer/HardwareCutsomers";
 import PHDCustomers from "./components/AdsCustomer/PhdProffesors";
 import CampusExpert from "./components/AdsCustomer/CampusExpert";
+import NewAdsData from "./components/AdsCustomer/NewAdsData";
 
 const routes = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const routes = createBrowserRouter([
       {
         path: "campus_expert",
         element: <CampusExpert />,
+      },
+      {
+        path: "new_ads",
+        element: <NewAdsData />,
       },
     ],
   },
