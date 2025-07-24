@@ -17,6 +17,7 @@ const hardwareRouter = require("./routes/hardwareCustomers");
 const earnrouter = require("./routes/EarnCustomers");
 const mongoose = require("mongoose");
 const roadmaprouter = require("./routes/roadmap");
+const ConsultAdsRoutes = require("./routes/ConsultAds")
 const roadmappopuprouter = require("./routes/roadmappopup");
 const multer = require("multer");
 // const Blog = require('./models/Blog');
@@ -57,6 +58,8 @@ app.use("/phdProffesors", phdProffesorrRouter);
 app.use("/hardwareCustomers", hardwareRouter);
 
 app.use("/googleadsCustomer", GoogleAdsRoutes);
+
+app.use("/consultadsCustomer", ConsultAdsRoutes);
 
 app.use("/students", StudentRoutes);
 
