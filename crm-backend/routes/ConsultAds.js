@@ -13,9 +13,8 @@ router.post("/send", async (req, res) => {
       departmentCollege,
       YearCollege,
       College,
-      city
     } = formData;
-
+    const { city } = req.body;
 
     let customer = new Customer({
       name: name,
@@ -25,14 +24,14 @@ router.post("/send", async (req, res) => {
       year: YearCollege,
       college: College,
       id: uuid.v4(),
-      city:city
+      city: city,
     });
 
     const saved = await customer.save();
 
     res.status(200).json({ message: "Customer Created", customer: saved });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ error: error });
   }
 });
