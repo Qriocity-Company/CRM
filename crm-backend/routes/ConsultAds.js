@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.post("/send", async (req, res) => {
   try {
-    const { formData } = req.body;
+    const  formData  = req.body;
+    console.log(formData);
     const {
       message,
       phoneNumber,
@@ -14,7 +15,6 @@ router.post("/send", async (req, res) => {
       YearCollege,
       College,
     } = formData;
-    const { city } = req.body;
 
     let customer = new Customer({
       name: name,
@@ -24,7 +24,6 @@ router.post("/send", async (req, res) => {
       year: YearCollege,
       college: College,
       id: uuid.v4(),
-      city: city,
     });
 
     const saved = await customer.save();

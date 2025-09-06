@@ -10,6 +10,7 @@ const customerSchema = new mongoose.Schema({
   department: { type: String },
   id: { type: String, required: true },
   date: { type: Date, default: Date.now },
+  city: { type: String },
 });
 
 const CustomerAds = mongoose.model("CustomerAds", customerSchema);
