@@ -13,9 +13,9 @@ router.post("/send", async (req, res) => {
       departmentCollege,
       YearCollege,
       College,
+      city
     } = formData;
 
-    console.log("received:", name);
 
     let customer = new Customer({
       name: name,
@@ -25,6 +25,7 @@ router.post("/send", async (req, res) => {
       year: YearCollege,
       college: College,
       id: uuid.v4(),
+      city:city
     });
 
     const saved = await customer.save();
