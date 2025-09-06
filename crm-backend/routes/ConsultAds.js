@@ -7,7 +7,6 @@ router.post("/send", async (req, res) => {
   try {
     const { formData } = req.body;
     const {
-      senderEmail,
       message,
       phoneNumber,
       name,
@@ -20,7 +19,6 @@ router.post("/send", async (req, res) => {
 
     let customer = new Customer({
       name: name,
-      email: senderEmail,
       phoneNumber: phoneNumber,
       message: message,
       department: departmentCollege,
@@ -33,6 +31,7 @@ router.post("/send", async (req, res) => {
 
     res.status(200).json({ message: "Customer Created", customer: saved });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: error });
   }
 });
