@@ -124,7 +124,7 @@ const Customers = () => {
             <div className="max-h-[75vh] overflow-y-scroll">
               {currentCustomers.map((customer, index) => (
                 <div
-                  className="grid grid-cols-9 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
+                  className="grid grid-cols-10 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
                   key={index}
                 >
                   <div className="p-2">{indexOfFirstCustomer + index + 1}</div>
