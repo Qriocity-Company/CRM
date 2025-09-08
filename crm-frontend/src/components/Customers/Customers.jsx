@@ -108,9 +108,10 @@ const Customers = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-9 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-10">
+            <div className="grid grid-cols-10 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-10">
               <div className="p-2 font-bold">S.No</div>
               <div className="p-2 font-bold">Name</div>
+              <div className="p-2 font-bold">Email</div>
               <div className="p-2 font-bold">Message</div>
               <div className="p-2 font-bold">Phone Number</div>
               <div className="p-2 font-bold">College</div>
@@ -128,6 +129,7 @@ const Customers = () => {
                 >
                   <div className="p-2">{indexOfFirstCustomer + index + 1}</div>
                   <div className="p-2">{customer.name}</div>
+                  <div className="p-2">{customer.email}</div>
                   <div className="p-2">{customer.message}</div>
                   <div className="p-2">{customer.phoneNumber}</div>
                   <div className="p-2">{customer.college || "N/A"}</div>
