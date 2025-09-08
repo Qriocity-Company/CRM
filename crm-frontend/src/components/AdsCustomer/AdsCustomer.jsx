@@ -135,9 +135,10 @@ const Customers = () => {
         </select>
       </div>
 
-      <div className="grid grid-cols-10 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-[10px]">
+      <div className="grid grid-cols-11 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-[10px]">
         <div className="p-2 font-bold">S.No</div>
         <div className="p-2 font-bold">Name</div>
+        <div className="p-2 font-bold">Email</div> {/* 👈 Added */}
         <div className="p-2 font-bold">Message</div>
         <div className="p-2 font-bold">Phone Number</div>
         <div className="p-2 font-bold">College</div>
@@ -151,14 +152,21 @@ const Customers = () => {
       <div className="max-h-[75vh] overflow-y-scroll">
         {currentCustomers.map((customer, index) => (
           <div
-            className="grid grid-cols-10 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
+            className="grid grid-cols-11 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
             key={index}
           >
             <div className="p-2">
               {(currentPage - 1) * customersPerPage + index + 1}
             </div>
-            <div className="p-2">{customer.name}</div>
-            <div className="p-2">{customer.message}</div>
+            <div className="p-2 break-words whitespace-normal">
+              {customer.name}
+            </div>
+            <div className="p-2 break-words whitespace-normal max-w-[200px]">
+              {customer.email || "N/A"}
+            </div>
+            <div className="p-2 break-words whitespace-normal max-w-[300px]">
+              {customer.message}
+            </div>
             <div className="p-2">{customer.phoneNumber}</div>
             <div className="p-2">{customer.college || "N/A"}</div>
             <div className="p-2">{customer.department || "N/A"}</div>

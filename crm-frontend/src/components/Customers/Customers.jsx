@@ -128,9 +128,15 @@ const Customers = () => {
                   key={index}
                 >
                   <div className="p-2">{indexOfFirstCustomer + index + 1}</div>
-                  <div className="p-2">{customer.name}</div>
-                  <div className="p-2">{customer.email}</div>
-                  <div className="p-2">{customer.message}</div>
+                  <div className="p-2 break-words whitespace-normal">
+                    {customer.name}
+                  </div>
+                  <div className="p-2 break-words whitespace-normal max-w-[200px]">
+                    {customer.email || "N/A"}
+                  </div>
+                  <div className="p-2 break-words whitespace-normal max-w-[300px]">
+                    {customer.message}
+                  </div>
                   <div className="p-2">{customer.phoneNumber}</div>
                   <div className="p-2">{customer.college || "N/A"}</div>
                   <div className="p-2">{customer.department || "N/A"}</div>

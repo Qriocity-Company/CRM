@@ -7,9 +7,10 @@ const URL = "https://crm-backend-o6sb.onrender.com";
 
 const GoogleAdsCustomer = () => {
   const [customers, setCustomers] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // State to track the current page
-  const customersPerPage = 10; // Number of entries per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const customersPerPage = 10;
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     fetchCustomers();
   }, []);
@@ -40,10 +41,7 @@ const GoogleAdsCustomer = () => {
 
   function convertUTCtoIST(utcTimestamp) {
     const utcDate = new Date(utcTimestamp);
-    const istDateTime = utcDate.toLocaleString("en-IN", {
-      timeZone: "Asia/Kolkata",
-    });
-    return istDateTime;
+    return utcDate.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
   }
 
   // Pagination logic
@@ -73,8 +71,10 @@ const GoogleAdsCustomer = () => {
     return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
   };
 
+  // ✅ Added Email in CSV export
   const csvData = customers.map((customer) => ({
     Name: customer.name,
+    Email: customer.senderEmail || "N/A",
     Message: customer.message,
     Contact: customer.phoneNumber,
     College: customer.college,
@@ -82,6 +82,7 @@ const GoogleAdsCustomer = () => {
     Year: customer.year,
     Date: formatDateTime(customer.date),
   }));
+
   return (
     <div className="p-8">
       <h1 className="font-semibold text-2xl mb-6">Google Ads Leads</h1>
@@ -100,9 +101,11 @@ const GoogleAdsCustomer = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-9 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-10">
+          {/* ✅ Added Email column */}
+          <div className="grid grid-cols-10 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-10">
             <div className="p-2 font-bold">S.No</div>
             <div className="p-2 font-bold">Name</div>
+            <div className="p-2 font-bold">Email</div>
             <div className="p-2 font-bold">Message</div>
             <div className="p-2 font-bold">Phone Number</div>
             <div className="p-2 font-bold">College</div>
@@ -115,11 +118,12 @@ const GoogleAdsCustomer = () => {
           <div className="max-h-[75vh] overflow-y-scroll">
             {currentCustomers.map((customer, index) => (
               <div
-                className="grid grid-cols-9 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
+                className="grid grid-cols-10 items-center bg-blue-200 border-b border-gray-300 text-center p-4"
                 key={customer._id}
               >
                 <div className="p-2">{indexOfFirstCustomer + index + 1}</div>
                 <div className="p-2">{customer.name}</div>
+                <div className="p-2">{customer.senderEmail || "N/A"}</div>
                 <div className="p-2">{customer.message}</div>
                 <div className="p-2">{customer.phoneNumber}</div>
                 <div className="p-2">{customer.college || "N/A"}</div>
