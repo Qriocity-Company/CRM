@@ -5,14 +5,14 @@ const router = express.Router();
 
 router.post("/send", async (req, res) => {
   try {
+
     const  formData  = req.body;
-    const {city} = req.body
     const {
-      senderEmail,
-      phoneNumber,
+      email,
+      phone,
       name,
-      departmentCollege,
-      YearCollege,
+      department,
+      year,
     } = formData;
     
 
@@ -20,10 +20,10 @@ router.post("/send", async (req, res) => {
 
     let customer = new Customer({
       name: name,
-      email: senderEmail,
-      phoneNumber: phoneNumber,
-      department: departmentCollege,
-      year: YearCollege,
+      email: email,
+      phoneNumber: phone,
+      department: department,
+      year: year,
     });
 
     const saved = await customer.save();
