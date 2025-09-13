@@ -10,6 +10,6 @@ const customerSchema = new mongoose.Schema({
     timestamps:true
 });
 
-const BookConsulations = mongoose.model("CustomerAds", customerSchema);
+const BookConsulations = mongoose.model("BookConsultations", customerSchema);
 
 module.exports = BookConsulations;
