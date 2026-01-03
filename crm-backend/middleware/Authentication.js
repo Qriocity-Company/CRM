@@ -4,11 +4,10 @@ const jwt = require("jsonwebtoken");
 function authenticateToken(req, res, next) {
     const token = req.header("Access_Token");
     if (!token) return res.status(401).send("Access Denied");
-    
+
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
-        if (err) res.status(403).send("Unauthorized Token");
-        // req._id = data._id;
-        // req.username = data.username;
+        if (err) return res.status(403).send("Unauthorized Token");
+        req.user = data;
         next();
     });
 }

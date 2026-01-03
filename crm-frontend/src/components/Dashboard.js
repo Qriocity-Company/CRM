@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../AuthContext";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -26,11 +26,11 @@ const Dashboard = () => {
       })
       .catch((err) => console.log(err));
   };
-  // if (!user) {
-  //   // If not logged in, redirect to the login page
-  //   navigate("/signup");
-  // //  return null; // You can also render a loading state or a message here
-  // }
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const blogHandle = (value) => {
     if (value != null && value != undefined) setBlog(value);
@@ -41,6 +41,14 @@ const Dashboard = () => {
       <div className="bg-indigo-950 flex-[15%] p-4 min-h-screen text-white">
         <div className="text-xl mb-5">Dashboard</div>
         <div className="flex flex-col gap-5 mb-10">
+          {user === "admin" && (
+            <Link
+              to="/dashboard/create-user"
+              className="hover:bg-blue-400 p-2 rounded-xl"
+            >
+              Create User
+            </Link>
+          )}
           <Link
             to="/dashboard/addCategory"
             className="hover:bg-blue-400 p-2 rounded-xl  "

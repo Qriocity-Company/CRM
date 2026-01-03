@@ -9,17 +9,15 @@ const AddCategory = () => {
   const [Category, setCategory] = useState("");
   const [company, setCompany] = useState("");
   const AddCategoryHandler = () => {
-    if(company.trim() === "")
-  {
-    toast.warning("Please Select company ");
-    return;
-  }
-    if(Category.trim() === "")
-  {
-    toast.warning("Please Fill Category Field ");
-    return;
-  }
-  
+    if (company.trim() === "") {
+      toast.warning("Please Select company ");
+      return;
+    }
+    if (Category.trim() === "") {
+      toast.warning("Please Fill Category Field ");
+      return;
+    }
+
     let data_obj = {
       company: company,
       category: Category,
@@ -29,35 +27,35 @@ const AddCategory = () => {
     axios
       .post(`${URL}/blog/add-category`, data_obj)
       .then((response) => {
-      
+
         if (response.status == 200) {
-            console.log(response);
+          console.log(response);
           toast.success(response.data.message);
-         
+
         }
-        else if  (response.status == 202) {
-            console.log(response);
-            toast.warning(response.data.message);
+        else if (response.status == 202) {
+          console.log(response);
+          toast.warning(response.data.message);
         }
-        else{
-            toast.error(response.data.message);
-         
+        else {
+          toast.error(response.data.message);
+
         }
         setCategory("");
-          setCompany("");
-      }).catch(error=>{
+        setCompany("");
+      }).catch(error => {
         console.log(error);
         toast.error(error.message);
-          setCategory("");
-          setCompany("");
+        setCategory("");
+        setCompany("");
       });
   };
 
   return (
     <div className=" flex justify-center items-center">
       <div className="  mt-20">
-        <div class=" p-8 rounded shadow-md w-[500px]">
-          <h1 class="text-2xl font-semibold mb-4">Add Category</h1>
+        <div className=" p-8 rounded shadow-md w-[500px]">
+          <h1 className="text-2xl font-semibold mb-4">Add Category</h1>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -85,7 +83,7 @@ const AddCategory = () => {
               setCategory(e.target.value);
             }}
             value={Category}
-            class="w-full p-2 border rounded focus:outline-none focus:border-blue-500"
+            className="w-full p-2 border rounded focus:outline-none focus:border-blue-500"
           />
           <button
             className="bg-blue-500 mt-9  text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"

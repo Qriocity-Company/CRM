@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 const URL = "https://crm-backend-o6sb.onrender.com"
 const Login = () => {
   const navigate = useNavigate();
-  const {login } = useAuth();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -17,10 +17,10 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLoginSuccess = (token , user) => {
+  const handleLoginSuccess = (token, user) => {
     // Set the token in a cookie
-    Cookies.set("token", token,  { expires: 7 }); // Set expiration to 7 days or adjust as needed
-    Cookies.set( "User" , user );
+    Cookies.set("token", token, { expires: 7 }); // Set expiration to 7 days or adjust as needed
+    Cookies.set("User", user);
     login(user);
     // Navigate to "/dashboard"
     navigate("/dashboard");
@@ -36,17 +36,17 @@ const Login = () => {
         console.log(res.data);
         if (res.status === 200) {
           console.log(res.data.token)
-          handleLoginSuccess(res.data.token , res.data.username);
+          handleLoginSuccess(res.data.token, res.data.username);
         } else {
           setError(res.data.message);
         }
       })
       .catch((err) => {
         console.log(err);
-      setError(err.response.data.message);
+        setError(err.response.data.message);
       });
 
-   
+
   };
 
   return (
@@ -99,12 +99,6 @@ const Login = () => {
             >
               Login
             </button>
-          </div>
-          <div className="text-center mt-5 ">
-            {" "}
-            <Link to="/signup">
-              Dont't have account ? <span className="font-medium">Sign Up</span>
-            </Link>
           </div>
         </form>
       </div>

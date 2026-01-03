@@ -36,13 +36,13 @@ const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
     path: "/dashboard",
     element: <Dashboard />,
     children: [
+      {
+        path: "create-user",
+        element: <Signup />,
+      },
       {
         index: true,
 
@@ -134,7 +134,7 @@ function App() {
     //   <AuthProvider>
     //     <Routes>
     //       <Route path="/" element={<Login />} />
-    //       <Route path="/signup" element={<Signup />} />
+    //       {/* <Route path="/signup" element={<Signup />} /> */}
     //       <Route path="/blogs" element={<BlogList />} />
     //       <Route path="/create-blog" element={<BlogForm />} />
     //       {/* Add more routes as needed */}

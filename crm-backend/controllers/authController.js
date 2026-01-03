@@ -5,24 +5,27 @@ const User = require('../models/User');
 require('dotenv').config();
 
 exports.signup = async (req, res) => {
-       
+
   try {
-    
+    if (req.user.username !== 'admin') {
+      return res.status(403).json({ message: 'Access denied. Only admin can create users.' });
+    }
+
     const { username, password } = req.body;
-    console.log(username , password);
+    console.log(username, password);
     // Check if the username is already taken
     const existingUser = await User.findOne({ username });
     if (existingUser) {
       return res.status(400).json({ message: 'Username is already taken' });
     }
-// Hash the password
-const saltRounds = 10;
-const hashedPassword = await bcrypt.hash(password, saltRounds);
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-// Create a new user with the hashed password
-const newUser = new User({ username, password: hashedPassword });
-await newUser.save();
-    
+    // Create a new user with the hashed password
+    const newUser = new User({ username, password: hashedPassword });
+    await newUser.save();
+
     res.status(201).json({ message: 'Signup successful' });
   } catch (error) {
     console.error('Error in signup:', error.message);
@@ -33,7 +36,13 @@ await newUser.save();
 exports.login = async (req, res) => {
   const { username, password } = req.body;
 
-  try { 
+  try {
+    // Hardcoded Admin Login
+    if (username === "admin" && password === "minister123") {
+      const token = jwt.sign({ username: "admin" }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+      return res.status(200).json({ message: 'Login successful', username: "admin", token });
+    }
+
     // Find the user based on the username
     const user = await User.findOne({ username });
 
@@ -47,11 +56,11 @@ exports.login = async (req, res) => {
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Invalid credentials , Password incorrect ' });
     }
-    
-    // Create a JWT token
-    const token = jwt.sign({ username: user.username },  process.env.ACCESS_TOKEN_SECRET , { expiresIn: '1h' });
 
-    res.status(200).json({ message: 'Login successful',username ,  token });
+    // Create a JWT token
+    const token = jwt.sign({ username: user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+
+    res.status(200).json({ message: 'Login successful', username, token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });

@@ -1,55 +1,42 @@
 // src/components/Auth/Signup.js
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
-// import { useAuth } from '../../AuthContext';
 import axios from 'axios';
-import { Link  , useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const Signup = () => {
-     const navigate = useNavigate();
- //  const history = useHistory();
- //  const { login } = useAuth(); // You might want to replace this with a proper signup function
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
-   const [error, setError] = useState("")
+  const [error, setError] = useState("")
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
-  const handleSubmit =  (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("https://crm-backend-o6sb.onrender.com/auth/signup" , formData).then((res)=>{
+    const token = Cookies.get("token");
+    axios.post("https://crm-backend-o6sb.onrender.com/auth/signup", formData, {
+      headers: {
+        "Access_Token": token
+      }
+    }).then((res) => {
       console.log(res.data);
-      if(res.status === 201){
-        navigate("/");
-      }else{
+      if (res.status === 201) {
+        // navigate("/"); // Don't navigate to login, maybe stay or show success message. 
+        // For now, let's just alert or clear form. 
+        // But user might expect some feedback.
+        // Let's navigate to dashboard which is parent.   
+        navigate("/dashboard");
+      } else {
         setError(res.data.message);
       }
-    }).catch((err)=> {console.log(err);
-      setError(err.response.data.message);
+    }).catch((err) => {
+      console.log(err);
+      setError(err.response?.data?.message || "An error occurred");
     });
-    // try {
-    //   console.log("^^^^^^^^" , formData);
-    //   // Make a POST request to your backend API endpoint
-    // 
-  
-    //   // // Handle the response from the server
-    //   console.log('Server Response:', response.data);
-  
-    //   // Optionally, you can redirect the user or perform other actions based on the response
-    // } catch (error) {
-    //   // Handle any errors that occurred during the request
-    //   console.error('Error:', error.message);
-    // }
-
-    // Call your backend API to handle signup
-    // For now, simulate a successful signup
-   // login({ username: formData.username });
-
-    // Redirect to the desired page after signup (e.g., home page)
- //   history.push('/');
   };
 
   return (
@@ -59,8 +46,9 @@ const Signup = () => {
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 "
           onSubmit={handleSubmit}
         >
-           {error && <div className='text-center text-red-500 font-medium'>{error}</div>}
-          <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+          {error && <div className='text-center text-red-500 font-medium'>{error}</div>}
+          {/* Change title to indicate Admin Action */}
+          <h2 className="text-2xl font-bold mb-4">Create User</h2>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Username:
@@ -92,14 +80,14 @@ const Signup = () => {
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Sign Up
+              Create User
             </button>
           </div>
-          <div className='text-center mt-5 '> <Link to="/" >Have account ? <span className='font-medium'>Login</span></Link></div>
         </form>
       </div>
     </div>
   );
 };
+
 
 export default Signup;
