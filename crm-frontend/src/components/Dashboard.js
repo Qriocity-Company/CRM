@@ -111,6 +111,12 @@ const Dashboard = () => {
             Hardware Leads
           </Link>
           <Link
+            to="/dashboard/course-leads"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Course Leads
+          </Link>
+          <Link
             to="/dashboard/students"
             className="hover:bg-blue-400 p-2 rounded-xl  "
           >
