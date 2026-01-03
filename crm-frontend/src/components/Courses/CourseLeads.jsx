@@ -4,7 +4,7 @@ import { CSVLink } from "react-csv";
 import { ImSpinner8 } from "react-icons/im";
 
 const CourseLeads = () => {
-    const URL = "http://localhost:5000"; // Or use environment variable if available
+    const URL = "https://crm-backend-o6sb.onrender.com"; // Or use environment variable if available
     const [leads, setLeads] = useState([]);
     const [loading, setLoading] = useState(false);
 
