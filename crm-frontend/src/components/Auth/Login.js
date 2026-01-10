@@ -43,7 +43,11 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        setError(err.response.data.message);
+        if (err.response && err.response.data && err.response.data.message) {
+          setError(err.response.data.message);
+        } else {
+          setError("Something went wrong. Please try again later. (Backend might be waking up)");
+        }
       });
 
 

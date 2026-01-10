@@ -5,18 +5,21 @@ const router = express.Router();
 
 router.post("/send", async (req, res) => {
   try {
-    const  formData  = req.body;
-    const {city} = req.body
+    const formData = req.body;
+    const { city } = req.body
     const {
       senderEmail,
       message,
       phoneNumber,
       name,
-      departmentCollege,
+      departmentCollege, // Old key
       YearCollege,
-      College,
+      College,           // Old key
+      department,        // New key
+      college,           // New key
+      source,            // New key
     } = formData;
-    
+
 
     console.log("received:", name);
 
@@ -25,11 +28,12 @@ router.post("/send", async (req, res) => {
       email: senderEmail,
       phoneNumber: phoneNumber,
       message: message,
-      department: departmentCollege,
+      department: departmentCollege || department,
       year: YearCollege,
-      college: College,
+      college: College || college,
       id: uuid.v4(),
       city: city,
+      source: source,
     });
 
     const saved = await customer.save();
