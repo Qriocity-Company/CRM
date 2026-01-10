@@ -142,6 +142,12 @@ const Dashboard = () => {
           >
             Document
           </Link>
+          <Link
+            to="/dashboard/brochure-leads"
+            className="hover:bg-blue-400 p-2 rounded-xl  "
+          >
+            Brochure Leads
+          </Link>
           {/* <div>My blogs</div>
              <div>All blogs</div> */}
 
