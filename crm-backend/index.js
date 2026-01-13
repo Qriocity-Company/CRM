@@ -21,6 +21,7 @@ const ConsultAdsRoutes = require("./routes/ConsultAds")
 const roadmappopuprouter = require("./routes/roadmappopup");
 const bookConsultationrouter = require("./routes/bookConsultations")
 const courseLeadRoutes = require("./routes/courseLeadRoutes");
+const workshopRouter = require("./routes/workshopRoutes");
 const multer = require("multer");
 // const Blog = require('./models/Blog');
 
@@ -80,6 +81,7 @@ app.use("/earnCustomer", earnrouter);
 app.use("/bookConsultations", bookConsultationrouter);
 
 app.use("/course-leads", courseLeadRoutes);
+app.use("/workshop", workshopRouter);
 
 // app.get('/api/blogs', async (req, res) => {
 //   try {
