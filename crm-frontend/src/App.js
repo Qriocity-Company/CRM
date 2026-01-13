@@ -30,6 +30,7 @@ import NewAdsData from "./components/AdsCustomer/NewAdsData";
 import BookConsultations from "./components/AdsCustomer/BookConsultations";
 import CourseLeads from "./components/Courses/CourseLeads";
 import BrochureLeads from "./components/AdsCustomer/BrochureLeads";
+import Workshop from "./components/Workshop/Workshop";
 
 const routes = createBrowserRouter([
   {
@@ -128,6 +129,10 @@ const routes = createBrowserRouter([
       {
         path: "brochure-leads",
         element: <BrochureLeads />,
+      },
+      {
+        path: "workshop",
+        element: <Workshop />,
       },
     ],
   },

@@ -171,6 +171,13 @@ const Dashboard = () => {
           >
             RoadMap Data
           </Link>
+
+          <Link
+            to="/dashboard/workshop"
+            className="hover:bg-blue-400 p-2 rounded-xl"
+          >
+            Workshop Data
+          </Link>
         </div>
         <button
           onClick={logouthandler}
