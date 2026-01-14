@@ -8,20 +8,21 @@ exports.addWorkshop = async (req, res) => {
         await workshop.save();
 
         // Email Automation
-        const transporter = nodemailer.createTransport({
-            service: "gmail", // Use your email provider
-            auth: {
-                user: process.env.EMAIL_USER, // Set this in your .env file
-                pass: process.env.EMAIL_PASS, // Set this in your .env file
-            },
-        });
+        try {
+            const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS,
+                },
+            });
 
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: req.body.email,
-            subject: "Workshop Registration Confirmation + WhatsApp Community Link",
-            text: `Hi ${req.body.name},\n\nThank you for registering for our FREE 2-hour Workshop on Mastering Final Year Projects with AI Tools!\n\n🗓 Date: January 18 (Sunday)\n⏰ Time: 7:00 PM – 9:00 PM\n🎯 Mode: Online (Google meet link will be shared before 1 day of the Workshop)\n\nTo make sure you don’t miss anything, please join our WhatsApp Community using the link below:\n👉 https://chat.whatsapp.com/FZoxdKCJzzw0oHSJf0zRSb\n\nAll workshop updates, the joining link, materials, and post-workshop resources will be shared only in this community.\nPlease join immediately to stay updated.\n\nLooking forward to seeing you in the workshop!\n\nBest Regards,\nTeam Qriocity`,
-            html: `
+            const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: req.body.email,
+                subject: "Workshop Registration Confirmation + WhatsApp Community Link",
+                text: `Hi ${req.body.name},\n\nThank you for registering for our FREE 2-hour Workshop on Mastering Final Year Projects with AI Tools!\n\n🗓 Date: January 18 (Sunday)\n⏰ Time: 7:00 PM – 9:00 PM\n🎯 Mode: Online (Google meet link will be shared before 1 day of the Workshop)\n\nTo make sure you don’t miss anything, please join our WhatsApp Community using the link below:\n👉 https://chat.whatsapp.com/FZoxdKCJzzw0oHSJf0zRSb\n\nAll workshop updates, the joining link, materials, and post-workshop resources will be shared only in this community.\nPlease join immediately to stay updated.\n\nLooking forward to seeing you in the workshop!\n\nBest Regards,\nTeam Qriocity`,
+                html: `
             <div style="font-family: Arial, sans-serif; color: #333;">
                 <p>Hi ${req.body.name},</p>
                 <p>Thank you for registering for our <strong>FREE 2-hour Workshop on Mastering Final Year Projects with AI Tools!</strong></p>
@@ -38,17 +39,22 @@ exports.addWorkshop = async (req, res) => {
                 <p>Best Regards,<br>Team Qriocity</p>
             </div>
             `,
-        };
+            };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log("Error sending email:", error);
-            } else {
-                console.log("Email sent:", info.response);
-            }
-        });
+            await transporter.sendMail(mailOptions);
+            console.log("Email sent successfully to:", req.body.email);
+        } catch (emailError) {
+            console.error("Failed to send email:", emailError);
+            // We don't want to fail the registration if email fails, but we should log it.
+            // Optionally we can return it in the response for debugging.
+            return res.status(201).json({
+                message: "Workshop registration added, but email failed to send.",
+                workshop,
+                emailError: emailError.message
+            });
+        }
 
-        res.status(201).json({ message: "Workshop registration added successfully", workshop });
+        res.status(201).json({ message: "Workshop registration added successfully and email sent", workshop });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
