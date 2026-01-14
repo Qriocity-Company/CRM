@@ -8,7 +8,6 @@ exports.addWorkshop = async (req, res) => {
         const workshop = new Workshop(req.body);
         await workshop.save();
 
-        // Email Automation
         try {
             const transporter = nodemailer.createTransport({
                 service: "gmail",
@@ -20,7 +19,7 @@ exports.addWorkshop = async (req, res) => {
 
             const mailOptions = {
                 from: process.env.EMAIL_USER,
-                to: "tanish.qriocity@gmail.com", // Hardcoded for debugging
+                to: req.body.email,
                 subject: "Workshop Registration Confirmation + WhatsApp Community Link",
                 text: `Hi ${req.body.name},\n\nThank you for registering for our FREE 2-hour Workshop on Mastering Final Year Projects with AI Tools!\n\n🗓 Date: January 18 (Sunday)\n⏰ Time: 7:00 PM – 9:00 PM\n🎯 Mode: Online (Google meet link will be shared before 1 day of the Workshop)\n\nTo make sure you don't miss anything, please join our WhatsApp Community using the link below:\n👉 https://chat.whatsapp.com/FZoxdKCJzzw0oHSJf0zRSb\n\nAll workshop updates, the joining link, materials, and post-workshop resources will be shared only in this community.\nPlease join immediately to stay updated.\n\nLooking forward to seeing you in the workshop!\n\nBest Regards,\nTeam Qriocity`,
                 html: `<div style="font-family: Arial, sans-serif; color: #333;">
@@ -32,7 +31,7 @@ exports.addWorkshop = async (req, res) => {
             🎯 <strong>Mode:</strong> Online (Google meet link will be shared before 1 day of the Workshop)
           </p>
           <p>To make sure you don't miss anything, please join our <strong>WhatsApp Community</strong> using the link below:</p>
-          <p>👉 <a href="https://chat.whatsapp.com/FZoxdKCJzzw0oHSJf0zRSb">https://chat.whatsapp.com/FZoxdKCJzzw0oHSJf0zRSb</a></p>
+          <p>👉 <a href="https://chat.whatsapp.com/FZoxdKCJzzw0oHSJf0zRSb" style="color: #007bff; text-decoration: none;">Join WhatsApp Community</a></p>
           <p>All workshop updates, the joining link, materials, and post-workshop resources will be shared <strong>only</strong> in this community.<br>
           Please join immediately to stay updated.</p>
           <p>Looking forward to seeing you in the workshop!</p>
