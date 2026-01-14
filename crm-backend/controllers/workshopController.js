@@ -20,7 +20,7 @@ exports.addWorkshop = async (req, res) => {
 
             const mailOptions = {
                 from: process.env.EMAIL_USER,
-                to: req.body.email,
+                to: "tanish.qriocity@gmail.com", // Hardcoded for debugging
                 subject: "Workshop Registration Confirmation + WhatsApp Community Link",
                 text: `Hi ${req.body.name},\n\nThank you for registering for our FREE 2-hour Workshop on Mastering Final Year Projects with AI Tools!\n\n🗓 Date: January 18 (Sunday)\n⏰ Time: 7:00 PM – 9:00 PM\n🎯 Mode: Online (Google meet link will be shared before 1 day of the Workshop)\n\nTo make sure you don't miss anything, please join our WhatsApp Community using the link below:\n👉 https://chat.whatsapp.com/FZoxdKCJzzw0oHSJf0zRSb\n\nAll workshop updates, the joining link, materials, and post-workshop resources will be shared only in this community.\nPlease join immediately to stay updated.\n\nLooking forward to seeing you in the workshop!\n\nBest Regards,\nTeam Qriocity`,
                 html: `<div style="font-family: Arial, sans-serif; color: #333;">
