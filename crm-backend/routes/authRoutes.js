@@ -12,6 +12,7 @@ router.post('/signup', authenticateToken, authController.signup);
 // Login
 // router.post('/login', passport.authenticate('local'), authController.login);
 router.post('/login', authController.login);
+router.post('/verify-otp', authController.verifyOTP);
 
 // Logout
 router.get('/logout', authController.logout);
