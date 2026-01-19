@@ -3,19 +3,12 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 import { IoArrowBackCircle } from "react-icons/io5";
-import { API_URL } from "../../config/api";
-const URL = API_URL;
+
+// const URL = API_URL;
 const BlogItem = () => {
   const location = useLocation();
   const blog = location.state.b;
   console.log(blog);
-  const date = new Date(blog.createdAt);
-  const monthNames = [
-    "January", "February", "March",
-    "April", "May", "June",
-    "July", "August", "September",
-    "October", "November", "December"
-  ];
   return (
     <div className=" my-10 w-5/6  mx-auto ">
       <Link

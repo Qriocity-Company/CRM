@@ -62,7 +62,7 @@ const BlogForm = () => {
 
 
     try {
-      const user = Cookies.get("User");
+      // const user = Cookies.get("User");
       // const formData = {
       //   'title': title,
       //   'caption' :  caption,

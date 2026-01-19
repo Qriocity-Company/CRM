@@ -1,13 +1,12 @@
-// App.js
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./AuthContext";
-import { useAuth } from "./AuthContext";
+// import { useAuth } from "./AuthContext";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/SignUp";
 import BlogList from "./components/Blog/BlogList";
-import BlogForm from "./components/Blog/BlogForm";
+// import BlogForm from "./components/Blog/BlogForm";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import BlogItem from "./components/Blog/BlogItem";

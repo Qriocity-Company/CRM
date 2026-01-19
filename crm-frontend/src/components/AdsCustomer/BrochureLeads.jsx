@@ -31,20 +31,8 @@ const BrochureLeads = () => {
         fetchCustomers();
     }, []);
 
-    const deleteCustomer = async (id) => {
-        try {
-            await axios.delete(`${URL}/adsCustomer/delete/${id}`);
-            setCustomers(customers.filter((element) => element.id !== id));
-            fetchCustomers();
-        } catch (error) {
-            console.error("Error deleting customer:", error);
-        }
-    };
 
-    function convertUTCtoIST(utcTimestamp) {
-        const utcDate = new Date(utcTimestamp);
-        return utcDate.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
-    }
+
 
     const formatDateTime = (timestamp) => {
         const date = new Date(timestamp);
@@ -129,7 +117,7 @@ const BrochureLeads = () => {
                         <div className="p-2">{customer.college || "N/A"}</div>
                         <div className="p-2">{customer.department || "N/A"}</div>
                         <div className="p-2">
-                            {customer.date ? convertUTCtoIST(customer.date) : "N/A"}
+                            {customer.date ? formatDateTime(customer.date) : "N/A"}
                         </div>
                     </div>
                 ))}

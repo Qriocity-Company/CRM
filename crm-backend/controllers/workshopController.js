@@ -1,7 +1,7 @@
 const Workshop = require("../models/Workshop");
 
 const nodemailer = require("nodemailer");
-const Workshop = require("../models/Workshop");
+
 
 exports.addWorkshop = async (req, res) => {
     try {

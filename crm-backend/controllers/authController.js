@@ -34,6 +34,7 @@ exports.signup = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
+  console.log("Entering login function with body:", req.body);
   const { username, password } = req.body;
 
   try {

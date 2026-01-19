@@ -10,7 +10,6 @@ const BookConsultations = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCity, setSelectedCity] = useState("All");
   const customersPerPage = 10;
 
   const fetchCustomers = async () => {
@@ -51,20 +50,8 @@ const BookConsultations = () => {
     return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
   };
 
-  // Filter customers by city
-  const filteredCustomers =
-    selectedCity === "All"
-      ? customers
-      : customers.filter((customer) => customer.city === selectedCity);
-
-  // Extract unique cities for dropdown
-  const uniqueCities = [
-    "All",
-    ...new Set(customers.map((c) => c.city).filter(Boolean)),
-  ];
-
   // CSV Export data
-  const csvData = filteredCustomers.map((customer) => ({
+  const csvData = customers.map((customer) => ({
     Name: customer.name,
     Email: customer.email,
     Contact: customer.phoneNumber,
@@ -77,12 +64,12 @@ const BookConsultations = () => {
   // Pagination logic
   const indexOfLastCustomer = currentPage * customersPerPage;
   const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
-  const currentCustomers = filteredCustomers.slice(
+  const currentCustomers = customers.slice(
     indexOfFirstCustomer,
     indexOfLastCustomer
   );
 
-  const totalPages = Math.ceil(filteredCustomers.length / customersPerPage);
+  const totalPages = Math.ceil(customers.length / customersPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {

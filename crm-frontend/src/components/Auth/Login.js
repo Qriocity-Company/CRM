@@ -70,7 +70,9 @@ const Login = () => {
     axios
       .post(`${URL}/auth/login`, formData)
       .then((res) => {
-        console.log(res.data);
+        console.log("Login response received:", res.data);
+        console.log("Status:", res.status);
+        console.log("Requires OTP?", res.data.requiresOTP);
         setIsLoading(false);
         if (res.status === 200) {
           if (res.data.requiresOTP) {
