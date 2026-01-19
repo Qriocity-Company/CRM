@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ImSpinner8 } from "react-icons/im"; // Import spinner
 import { CSVLink } from "react-csv";
+import { API_URL } from "../../config/api";
 
-const URL = "https://crm-backend-o6sb.onrender.com";
+const URL = API_URL;
 
 const BrochureLeads = () => {
     const [customers, setCustomers] = useState([]);

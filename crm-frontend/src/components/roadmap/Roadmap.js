@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
+import { API_URL } from "../../config/api";
 
 const RoadmapPopUp = () => {
-  const URL = "https://crm-backend-o6sb.onrender.com";
+  const URL = API_URL;
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);

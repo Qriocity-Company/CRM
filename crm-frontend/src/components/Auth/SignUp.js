@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
+import { API_URL } from "../../config/api";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = Cookies.get("token");
-    axios.post("https://crm-backend-o6sb.onrender.com/auth/signup", formData, {
+    axios.post(`${API_URL}/auth/signup`, formData, {
       headers: {
         "Access_Token": token
       }

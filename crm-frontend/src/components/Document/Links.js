@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../../config/api";
 
 function Links() {
   const [links, setLinks] = useState([]);
@@ -10,7 +11,7 @@ function Links() {
   const getAllLinks = async () => {
     try {
       const { data } = await axios.get(
-        "https://crm-backend-o6sb.onrender.com/api/doc/getAlldoc"
+        `${API_URL}/api/doc/getAlldoc`
       );
       setLinks(data.links); // Update the state with fetched links
       console.log(data);
@@ -38,7 +39,7 @@ function Links() {
   const deleteLink = async (id) => {
     console.log(id);
     try {
-      await axios.post(`https://crm-backend-o6sb.onrender.com/api/doc/delete`, {
+      await axios.post(`${API_URL}/api/doc/delete`, {
         id,
       });
       setLinks(links.filter((link) => link._id !== id));

@@ -3,8 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 import { IoArrowBackCircle } from "react-icons/io5";
-const URL = "https://crm-backend-o6sb.onrender.com"
-// const URL = "http://localhost:5000"
+import { API_URL } from "../../config/api";
+const URL = API_URL;
 const BlogItem = () => {
   const location = useLocation();
   const blog = location.state.b;
@@ -25,11 +25,11 @@ const BlogItem = () => {
         back <IoArrowBackCircle className="md:text-4xl text-2xl" />{" "}
       </Link>
       <div className="md:hidden max-w-md mx-auto mt-4 p-4 bg-white border rounded-lg shadow-lg">
-       
+
 
         <h2 className="text-2xl font-bold mb-2">{blog.title}</h2>
-        
-        <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
+
+        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
         {/* <p className="text-gray-700 mt-3 ">
             {" "}
             By : <span className="font-medium italic">{blog.writer}</span>{" "}
@@ -40,13 +40,13 @@ const BlogItem = () => {
           </p> */}
       </div>
       <div className=" p-5 md:block  hidden gap-10  bg-white border rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold ">{blog.title}</h2>
-          {/* <p className="text-gray-600 mb-3 italic">{blog.caption}</p>
+        <h2 className="text-2xl font-bold ">{blog.title}</h2>
+        {/* <p className="text-gray-600 mb-3 italic">{blog.caption}</p>
         <img src={`${URL}/${blog.imageURL}`} className="mb-4 w-1/2 max-h-[500px] rounded-lg" /> */}
 
         <div className="flex flex-col gap-5">
-       
-        <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
+
+          <div dangerouslySetInnerHTML={{ __html: blog.content }} />
           {/* <p className="text-gray-700 ">
             {" "}
             Category : <span className="font-medium italic">{blog.category}</span>{" "}

@@ -4,6 +4,7 @@ import { useAuth } from "../AuthContext";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Blog from "./NewBlog/Blog";
+import { API_URL } from "../config/api";
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const [blog, setBlog] = useState(null);
@@ -11,7 +12,7 @@ const Dashboard = () => {
   const token = Cookies.get("token");
   const logouthandler = () => {
     axios
-      .get("https://crm-backend-o6sb.onrender.com/auth/logout", {
+      .get(`${API_URL}/auth/logout`, {
         header: {
           Access_Token: token,
         },

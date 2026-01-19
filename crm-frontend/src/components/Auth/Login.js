@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-
 import { useAuth } from "../../AuthContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-const URL = "https://crm-backend-o6sb.onrender.com"
+import { API_URL } from "../../config/api";
+
+const URL = API_URL;
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -15,6 +16,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [otp, setOtp] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

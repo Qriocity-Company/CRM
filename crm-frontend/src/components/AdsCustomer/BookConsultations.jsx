@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ImSpinner8 } from "react-icons/im";
 import { CSVLink } from "react-csv";
+import { API_URL } from "../../config/api";
 
-const URL = "https://crm-backend-o6sb.onrender.com";
+const URL = API_URL;
 
 const BookConsultations = () => {
   const [customers, setCustomers] = useState([]);
@@ -117,7 +118,7 @@ const BookConsultations = () => {
           Download CSV
         </CSVLink>
 
-      
+
       </div>
 
       <div className="grid grid-cols-8 bg-[#2f2a7a] text-white text-center py-4 rounded-t-lg mt-[10px]">
@@ -176,9 +177,8 @@ const BookConsultations = () => {
           <button
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
-            className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${
-              currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+              }`}
           >
             Previous
           </button>
@@ -188,9 +188,8 @@ const BookConsultations = () => {
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-700 ${
-              currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-700 ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+              }`}
           >
             Next
           </button>

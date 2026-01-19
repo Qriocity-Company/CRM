@@ -5,9 +5,9 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "react-quill/dist/quill.snow.css";
+import { API_URL } from "../../config/api";
 
-const URL = "https://crm-backend-o6sb.onrender.com"
-// const URL = "http://localhost:5000"
+const URL = API_URL;
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
    

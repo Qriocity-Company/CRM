@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ImSpinner8 } from "react-icons/im"; // Import spinner
+import { API_URL } from "../../config/api";
 
-const URL = "https://crm-backend-o6sb.onrender.com";
+const URL = API_URL;
 
 const HardwareCustomers = () => {
   const [customers, setCustomers] = useState([]);

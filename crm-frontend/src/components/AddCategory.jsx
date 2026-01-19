@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const URL = "https://crm-backend-o6sb.onrender.com";
-// const URL = "http://localhost:5000";
+import { API_URL } from "../config/api";
+const URL = API_URL;
 
 const AddCategory = () => {
   const [Category, setCategory] = useState("");

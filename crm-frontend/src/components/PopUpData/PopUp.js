@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import { ImSpinner8 } from "react-icons/im";
+import { API_URL } from "../../config/api";
 
 const PopUp = () => {
-  const URL = "https://crm-backend-o6sb.onrender.com";
+  const URL = API_URL;
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);

@@ -3,9 +3,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import { ImSpinner8 } from "react-icons/im";
+import { API_URL } from "../../config/api";
 
 const AllStudents = () => {
-  const URL = "https://crm-backend-o6sb.onrender.com";
+  const URL = API_URL;
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
 

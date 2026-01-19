@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ImSpinner8 } from "react-icons/im"; // Import spinner
 import { CSVLink } from "react-csv";
+import { API_URL } from "../../config/api";
 
-const URL = "https://crm-backend-o6sb.onrender.com";
+const URL = API_URL;
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
@@ -192,9 +193,8 @@ const Customers = () => {
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${
-            currentPage === 1 ? "cursor-not-allowed" : ""
-          }`}
+          className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${currentPage === 1 ? "cursor-not-allowed" : ""
+            }`}
         >
           Previous
         </button>
@@ -204,9 +204,8 @@ const Customers = () => {
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${
-            currentPage === totalPages ? "cursor-not-allowed" : ""
-          }`}
+          className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 ${currentPage === totalPages ? "cursor-not-allowed" : ""
+            }`}
         >
           Next
         </button>

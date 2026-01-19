@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../../config/api";
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -13,18 +14,18 @@ const Create = () => {
       // First Axios request
       const combinedURL = `https://www.qriocity.in/resource/${uniqueIdentifier}`;
       const response1 = await axios.post(
-        "https://crm-backend-o6sb.onrender.com/api/doc/createDocLink",
+        `${API_URL}/api/doc/createDocLink`,
         {
           title: title,
           docLink: documentLink,
           uniqueLink: uniqueIdentifier,
-          newLink:combinedURL,
+          newLink: combinedURL,
         }
       );
 
       // Second Axios request with the combined URL
-     
-  
+
+
 
       setTitle("");
       setDocumentLink("");
@@ -40,7 +41,7 @@ const Create = () => {
   const getAllLinks = async () => {
     try {
       const { data } = await axios.get(
-        "https://crm-backend-o6sb.onrender.com/api/link/getAlllink"
+        `${API_URL}/api/link/getAlllink`
       );
       setLinks(data.links); // Update the state with fetched links
       console.log(data);
@@ -126,7 +127,7 @@ const Create = () => {
           </button>
         </form>
       </div>
-      
+
     </div>
   );
 };

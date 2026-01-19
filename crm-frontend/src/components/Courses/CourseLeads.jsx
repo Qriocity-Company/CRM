@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import { ImSpinner8 } from "react-icons/im";
+import { API_URL } from "../../config/api";
 
 const CourseLeads = () => {
-    const URL = "https://crm-backend-o6sb.onrender.com"; // Or use environment variable if available
+    const URL = API_URL; // Or use environment variable if available
     const [leads, setLeads] = useState([]);
     const [loading, setLoading] = useState(false);
 
