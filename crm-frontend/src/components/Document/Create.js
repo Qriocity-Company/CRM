@@ -6,14 +6,13 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [documentLink, setDocumentLink] = useState("");
   const [uniqueIdentifier, setUniqueIdentifier] = useState("");
-  const [links, setLinks] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // First Axios request
       const combinedURL = `https://www.qriocity.in/resource/${uniqueIdentifier}`;
-      const response1 = await axios.post(
+      await axios.post(
         `${API_URL}/api/doc/createDocLink`,
         {
           title: title,
@@ -30,40 +29,11 @@ const Create = () => {
       setTitle("");
       setDocumentLink("");
       setUniqueIdentifier("");
-      getAllLinks(); // Refresh the links after submission
       // You can add more logic here to handle the response, e.g., show a success message
     } catch (error) {
       console.error("Error:", error);
       // Handle the error, e.g., show an error message
     }
-  };
-
-  const getAllLinks = async () => {
-    try {
-      const { data } = await axios.get(
-        `${API_URL}/api/link/getAlllink`
-      );
-      setLinks(data.links); // Update the state with fetched links
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getAllLinks();
-  }, []);
-
-  const copyToClipboard = (link) => {
-    navigator.clipboard.writeText(link).then(
-      () => {
-        console.log("Copied to clipboard: ", link);
-        alert("Link copied to clipboard!");
-      },
-      (err) => {
-        console.error("Failed to copy: ", err);
-      }
-    );
   };
 
   return (

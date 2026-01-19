@@ -33,7 +33,7 @@ const BlogList = () => {
       .get(`${URL}/blog/${id}`)
       .then((response) => {
       
-        if (response.status == 200) {
+        if (response.status === 200) {
             console.log(response);
           toast.success(response.data.message);
           fetchBlogs();
@@ -54,7 +54,7 @@ const BlogList = () => {
   return (
     
 <>
-  {blogs.length == 0 ? <div className='text-center text-xl text-red-500'>
+  {blogs.length === 0 ? <div className='text-center text-xl text-red-500'>
       no data
   </div> : <div className="w-5/6 mx-auto  my-10">
     

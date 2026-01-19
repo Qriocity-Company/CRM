@@ -4,12 +4,14 @@ import { CSVLink } from "react-csv";
 import { ImSpinner8 } from "react-icons/im";
 import { API_URL } from "../../config/api";
 
+const URL = API_URL;
+
 const CourseLeads = () => {
-    const URL = API_URL; // Or use environment variable if available
+    // const URL = API_URL; // Or use environment variable if available
     const [leads, setLeads] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const getLeads = async () => {
+    const getLeads = React.useCallback(async () => {
         setLoading(true);
         try {
             const { data } = await axios.get(`${URL}/course-leads/get`);
@@ -21,7 +23,7 @@ const CourseLeads = () => {
             console.log(error);
             setLoading(false);
         }
-    };
+    }, []);
 
     const handleDel = async (id) => {
         try {
@@ -50,7 +52,7 @@ const CourseLeads = () => {
 
     useEffect(() => {
         getLeads();
-    }, []);
+    }, [getLeads]);
 
     return (
         <div className="content p-4">

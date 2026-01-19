@@ -3,11 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../AuthContext";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import Blog from "./NewBlog/Blog";
 import { API_URL } from "../config/api";
 const Dashboard = () => {
   const { user, logout } = useAuth();
-  const [blog, setBlog] = useState(null);
   const navigate = useNavigate();
   const token = Cookies.get("token");
   const logouthandler = () => {
@@ -32,10 +30,6 @@ const Dashboard = () => {
       navigate("/");
     }
   }, [user, navigate]);
-
-  const blogHandle = (value) => {
-    if (value != null && value != undefined) setBlog(value);
-  };
 
   return (
     <div className="flex max-w-[144opx]  ">
