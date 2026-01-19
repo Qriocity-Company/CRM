@@ -9,18 +9,6 @@ import { API_URL } from "../../config/api";
 const URL = API_URL;
 
 
-const techCategories = [
-  'Web Development',
-  'Mobile App Development',
-  'Data Science',
-  'Machine Learning',
-  'Cloud Computing',
-  'Cybersecurity',
-  'Artificial Intelligence',
-  'DevOps',
-  'Blockchain',
-  'Internet of Things (IoT)',
-];
 
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"],
@@ -48,19 +36,18 @@ function Blog(props) {
   const [categoryList, setCategoryList] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const fetch = () => {
-
-    axios.get(`${URL}/blog/category/${company}`).then((response) => {
-      if (response.status == 200) {
-        // console.log(response);
-        setCategoryList(response.data);
-      }
-    }).catch((error) => {
-      console.log(error);
-    })
-  }
-
   useEffect(() => {
+    const fetch = () => {
+      axios.get(`${URL}/blog/category/${company}`).then((response) => {
+        if (response.status === 200) {
+          // console.log(response);
+          setCategoryList(response.data);
+        }
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+
     if (company) fetch();
   }, [company])
 
@@ -90,9 +77,9 @@ function Blog(props) {
         Access_Token: token
       },
     }).then((response) => {
-      if (response.status == 201)
+      if (response.status === 201)
         toast.success(response.data.message);
-      else if (response.status == 413)
+      else if (response.status === 413)
         toast.warning("Blog Size is too large , use image less than 1mb.");
     }).catch((error) => {
       console.log(error);
@@ -104,7 +91,6 @@ function Blog(props) {
 
   return (
     <div className="p-3">
-      <h1></h1>
       <div className="flex justify-start gap-5 ">
         <div className="mb-4">
           {/* <label

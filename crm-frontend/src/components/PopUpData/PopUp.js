@@ -11,7 +11,7 @@ const PopUp = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const entriesPerPage = 10;
 
-  const getStudents = async () => {
+  const getStudents = React.useCallback(async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(`${URL}/enquiry/getStudent`);
@@ -25,7 +25,7 @@ const PopUp = () => {
       console.log(error);
     }
     setLoading(false);
-  };
+  }, []);
 
   const handleDel = async (id) => {
     try {
@@ -48,7 +48,7 @@ const PopUp = () => {
 
   useEffect(() => {
     getStudents();
-  }, []);
+  }, [getStudents]);
 
   const indexOfLastEntry = currentPage * entriesPerPage;
   const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;

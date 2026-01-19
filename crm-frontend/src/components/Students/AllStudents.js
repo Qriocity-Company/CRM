@@ -10,7 +10,7 @@ const AllStudents = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getStudents = async () => {
+  const getStudents = React.useCallback(async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(`${URL}/students/getStudent`);
@@ -24,13 +24,14 @@ const AllStudents = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []); // URL is a constant
 
   const handleDel = async (id) => {
     try {
       const { data } = await axios.post(`${URL}/students/delStudent`, { id });
       if (data?.success) {
-        window.location.reload();
+        // window.location.reload(); // Reloading is bad UX, let's refresh
+        getStudents();
       }
     } catch (error) {
       console.log(error);
@@ -62,7 +63,7 @@ const AllStudents = () => {
 
   useEffect(() => {
     getStudents();
-  }, []);
+  }, [getStudents]);
 
   return (
     <>

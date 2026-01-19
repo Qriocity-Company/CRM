@@ -12,7 +12,7 @@ const RoadmapPopUp = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const getStudents = async () => {
+  const getStudents = React.useCallback(async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(`${URL}/roadmap-popup/getStudent`);
@@ -27,7 +27,7 @@ const RoadmapPopUp = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const formatDateTime = (timestamp) => {
     const date = new Date(timestamp);
@@ -62,7 +62,7 @@ const RoadmapPopUp = () => {
 
   useEffect(() => {
     getStudents();
-  }, []);
+  }, [getStudents]);
 
   // CSV Data formatting
   const csvData = students.map((student) => ({
