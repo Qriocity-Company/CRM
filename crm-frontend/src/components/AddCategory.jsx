@@ -28,12 +28,12 @@ const AddCategory = () => {
       .post(`${URL}/blog/add-category`, data_obj)
       .then((response) => {
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           console.log(response);
           toast.success(response.data.message);
 
         }
-        else if (response.status == 202) {
+        else if (response.status === 202) {
           console.log(response);
           toast.warning(response.data.message);
         }
