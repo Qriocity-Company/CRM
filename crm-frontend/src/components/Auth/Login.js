@@ -37,34 +37,34 @@ const Login = () => {
     setIsLoading(true);
     setError("");
 
-    if (showOtpInput) {
-      // Create a specific object for verification if needed, or just send username/otp
-      const verifyData = {
-        username: formData.username,
-        otp: otp
-      };
+    // if (showOtpInput) {
+    //   // Create a specific object for verification if needed, or just send username/otp
+    //   const verifyData = {
+    //     username: formData.username,
+    //     otp: otp
+    //   };
 
-      axios.post(`${URL}/auth/verify-otp`, verifyData)
-        .then((res) => {
-          console.log(res.data);
-          setIsLoading(false);
-          if (res.status === 200) {
-            handleLoginSuccess(res.data.token, res.data.username);
-          } else {
-            setError(res.data.message);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          setIsLoading(false);
-          if (err.response && err.response.data && err.response.data.message) {
-            setError(err.response.data.message);
-          } else {
-            setError("OTP Verification failed. Please try again.");
-          }
-        });
-      return;
-    }
+    //   axios.post(`${URL}/auth/verify-otp`, verifyData)
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       setIsLoading(false);
+    //       if (res.status === 200) {
+    //         handleLoginSuccess(res.data.token, res.data.username);
+    //       } else {
+    //         setError(res.data.message);
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //       setIsLoading(false);
+    //       if (err.response && err.response.data && err.response.data.message) {
+    //         setError(err.response.data.message);
+    //       } else {
+    //         setError("OTP Verification failed. Please try again.");
+    //       }
+    //     });
+    //   return;
+    // }
 
     // Call your backend API to handle login
     axios
@@ -75,14 +75,14 @@ const Login = () => {
         console.log("Requires OTP?", res.data.requiresOTP);
         setIsLoading(false);
         if (res.status === 200) {
-          if (res.data.requiresOTP) {
-            setShowOtpInput(true);
-            setError("OTP sent to your email. Please enter it below.");
-          } else {
-            // Fallback if backend doesn't enforce OTP (should not happen with new code)
-            console.log(res.data.token)
-            handleLoginSuccess(res.data.token, res.data.username);
-          }
+          // if (res.data.requiresOTP) {
+          //   setShowOtpInput(true);
+          //   setError("OTP sent to your email. Please enter it below.");
+          // } else {
+          // Fallback if backend doesn't enforce OTP (should not happen with new code)
+          console.log(res.data.token)
+          handleLoginSuccess(res.data.token, res.data.username);
+          // }
         } else {
           setError(res.data.message);
         }
@@ -108,67 +108,44 @@ const Login = () => {
           {error && (
             <div className="text-center text-red-500 font-medium mb-4">{error}</div>
           )}
-          <h2 className="text-2xl font-bold mb-4">{showOtpInput ? 'Enter OTP' : 'Login'}</h2>
+          <h2 className="text-2xl font-bold mb-4">Login</h2>
 
-          {!showOtpInput && (
-            <>
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="username"
-                >
-                  Username:
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="username"
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="password"
-                >
-                  Password:
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="password"
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                />
-              </div>
-            </>
-          )}
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="username"
+            >
+              Username:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              disabled={isLoading}
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Password:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              disabled={isLoading}
+            />
+          </div>
 
-          {showOtpInput && (
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="otp"
-              >
-                One-Time Password (OTP):
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="otp"
-                type="text"
-                name="otp"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                disabled={isLoading}
-                placeholder="Enter 6-digit OTP"
-              />
-            </div>
-          )}
+
 
           <div className="flex items-center justify-between ">
             <button
@@ -176,7 +153,7 @@ const Login = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? (showOtpInput ? 'Verifying...' : 'Logging in...') : (showOtpInput ? 'Verify OTP' : 'Login')}
+              {isLoading ? 'Logging in...' : 'Login'}
             </button>
           </div>
         </form>

@@ -54,28 +54,32 @@ exports.login = async (req, res) => {
 
     // Generate 6-digit OTP
     // crypto is built-in, but math.random is easier for simple 6-digit
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+    // const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    // const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
-    // Save OTP to user
-    user.otp = otp;
-    user.otpExpires = otpExpires;
-    await user.save();
+    // // Save OTP to user
+    // user.otp = otp;
+    // user.otpExpires = otpExpires;
+    // await user.save();
 
-    console.log(`[OTP DEBUG] OTP for ${username} is ${otp}`); // Keep log for backup
+    // console.log(`[OTP DEBUG] OTP for ${username} is ${otp}`); // Keep log for backup
 
-    // Send OTP via Email
-    try {
-      const { sendOtpEmail } = require('../utils/emailService');
-      await sendOtpEmail(username, otp);
-    } catch (emailError) {
-      console.error('Failed to send OTP email:', emailError);
-      // Optional: Fail login or allow proceed if email fails? For security, fail.
-      // But for debugging/setup, we might want to just rely on console log.
-      // We will assume it might fail if env vars aren't set, so we return OTP requirement anyway.
-    }
+    // // Send OTP via Email
+    // try {
+    //   const { sendOtpEmail } = require('../utils/emailService');
+    //   await sendOtpEmail(username, otp);
+    // } catch (emailError) {
+    //   console.error('Failed to send OTP email:', emailError);
+    //   // Optional: Fail login or allow proceed if email fails? For security, fail.
+    //   // But for debugging/setup, we might want to just rely on console log.
+    //   // We will assume it might fail if env vars aren't set, so we return OTP requirement anyway.
+    // }
 
-    return res.status(200).json({ message: 'OTP sent to admin email', requiresOTP: true, username });
+    // return res.status(200).json({ message: 'OTP sent to admin email', requiresOTP: true, username });
+
+    // Direct Login without OTP
+    const token = jwt.sign({ username: user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+    return res.status(200).json({ message: 'Login successful', username: user.username, token });
 
   } catch (error) {
     console.error(error);
