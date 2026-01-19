@@ -5,8 +5,9 @@ import { MdDelete } from "react-icons/md";
 import { CSVLink } from "react-csv"; // Import CSVLink from react-csv
 import { API_URL } from "../../config/api";
 
+const URL = API_URL;
+
 const RoadmapPopUp = () => {
-  const URL = API_URL;
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);

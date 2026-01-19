@@ -4,8 +4,9 @@ import { CSVLink } from "react-csv";
 import { ImSpinner8 } from "react-icons/im";
 import { API_URL } from "../../config/api";
 
+const URL = API_URL;
+
 const PopUp = () => {
-  const URL = API_URL;
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
