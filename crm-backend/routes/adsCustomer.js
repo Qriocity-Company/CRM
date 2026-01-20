@@ -16,6 +16,7 @@ router.post("/send", async (req, res) => {
       YearCollege,
       College,           // Old key
       department,        // New key
+      year,              // New key
       college,           // New key
       source,            // New key
     } = formData;
@@ -29,7 +30,7 @@ router.post("/send", async (req, res) => {
       phoneNumber: phoneNumber,
       message: message,
       department: departmentCollege || department,
-      year: YearCollege,
+      year: YearCollege || year,
       college: College || college,
       id: uuid.v4(),
       city: city,
